@@ -18,7 +18,8 @@
 		\item Add $I$ to final solution set $S^{\prime}$.
 		\item Remove all intervals from $S$ that overlap with $I$.
 	\end{enumerate}
-	% answer here
+	\\
+	Given the following input:  1-2, 1-3, 1-3, 2-4, 3-5, 4-6, 5-7, 5-7, 6-7.
 	\\
 	\noindent
 	2. Consider the following Interval Coloring Problem.\\
@@ -35,8 +36,14 @@
 		\item[(a)] Consider the following iterative algorithm. Assign as many classes as possible to the
 		first room (we can do this using the greedy algorithm discussed in class, and in the class notes),
 		then assign as many classes as possible to the second room, then assign as many classes as possible
-		to the third room, etc. Does this algorithm solve the Interval Coloring Problem? Justify your answer.
-		% answer here
+		to the third room, etc. Does this algorithm solve the Interval Coloring Problem? Justify your answer.\\
+		\\
+		Let $s$ be the maximum number of intervals that overlap at one particular point in time. For each iteration
+		of the algorithm the maximum number of non-overlapping times will be selected. From this we can assume that
+		the maximum number of iterations in order for this algorithm to complete will be equivalent to $s$. As we 
+		assign a single room in each iteration the maximum number of rooms will be $s$. This algorithm does solve 
+		the Interval Coloring Problem as it is able to find the optimal solution.
+		 
 		\item[(b)] Consider the following algorithm. Process the classes in increasing order of start time. Assume
 		that you are processing class $C$. If there is a room $R$ such that $R$ has been assigned to an earlier
 		class, and $C$ can be assigned to $R$ without overlapping previously assigned classes, then assign $C$ to
