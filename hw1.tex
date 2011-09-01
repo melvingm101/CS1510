@@ -18,5 +18,29 @@
 		\item Add $I$ to final solution set $S^{\prime}$.
 		\item Remove all intervals from $S$ that overlap with $I$.
 	\end{enumerate}
-	
+	% answer here
+	\\
+	\noindent
+	2. Consider the following Interval Coloring Problem.\\
+	\\
+	INPUT: A set $ S = \{(x_{i},y_{i})| 1\leq i \leq n\} $ of intervals over the real line. 
+	Think of interval $(x_{i},y_{i}$ as being a request for a room for a class that meets from 
+	time $x_{i}$ to time $y_{i}$.\\
+	OUTPUT: Find an assignment of classes to rooms that uses the fewest number of rooms.\\
+	\\
+	Note that every room request must be honored and that no two classes can use a room at the
+	same time. 
+
+	\begin{enumerate}
+		\item[(a)] Consider the following iterative algorithm. Assign as many classes as possible to the
+		first room (we can do this using the greedy algorithm discussed in class, and in the class notes),
+		then assign as many classes as possible to the second room, then assign as many classes as possible
+		to the third room, etc. Does this algorithm solve the Interval Coloring Problem? Justify your answer.
+		% answer here
+		\item[(b)] Consider the following algorithm. Process the classes in increasing order of start time. Assume
+		that you are processing class $C$. If there is a room $R$ such that $R$ has been assigned to an earlier
+		class, and $C$ can be assigned to $R$ without overlapping previously assigned classes, then assign $C$ to
+		$R$. Otherwise, put $C$ in a new room. Does this algorithm solve the Interval Coloring Problem? Justify your anser.
+		% answer here
+	\end{enumerate}
 \end{document}
