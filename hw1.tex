@@ -1,0 +1,22 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Greedy Algorithm Problems\\
+	9.1.2011
+	\end{flushright}
+	\noindent
+	1. Consider the following problem:\\ 
+	INPUT: A set $ S = \{(x_{i},y_{i})| 1\leq i \leq n\} $ of intervals over the real line.\\
+	OUTPUT: A maximum cardinality subset $S^{\prime}$ of $S$ such that no pair of intervals in $S^{\prime}$ overlap. \\
+	Consider the following algorithm:\\
+	\\
+	Repeat until $S$ is empty
+	\begin{enumerate}
+		\item Select the iterval $I$ that overlaps the least number of other intervals.
+		\item Add $I$ to final solution set $S^{\prime}$.
+		\item Remove all intervals from $S$ that overlap with $I$.
+	\end{enumerate}
+	
+\end{document}
