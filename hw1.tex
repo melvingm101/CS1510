@@ -49,6 +49,15 @@
 		class, and $C$ can be assigned to $R$ without overlapping previously assigned classes, then assign $C$ to
 		$R$. Otherwise, put $C$ in a new room. Does this algorithm solve the Interval Coloring Problem? Justify your answer.\\
 		\\
-		% answer here
+		Let $s$ be the maximum number of intervals that overlap at one particular point in time. Given that classes
+		are processed in increasing order of start times we can interpret that to be the earliest classes will be
+		processed first. In each step the earliest class of the unprocessed set $U$ is placed into room $R$ given
+		the criteria that room $R$ has been assigned to an earlier class and $C$ does not overlap with any of the 
+		classes assigned to room $R$. Each class must be placed in a room with a class earlier than it in it and 
+		since the classes are processed from the earliest class onward we can state that classes must attempt to
+		be placed in a room with a class already in it. The only other criteria examined is if an overlap exists
+		or not. This means that only in the case that all $R$ with classes in them all overlap with class $C$ will
+		an additional room be allocated. In which case the number of rooms is constrained in this algorithm by $s$.
+		Therefore, this algorithm does solve the Interval Coloring Problem.
 	\end{enumerate}
 \end{document}
