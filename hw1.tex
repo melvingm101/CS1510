@@ -19,7 +19,19 @@
 		\item Remove all intervals from $S$ that overlap with $I$.
 	\end{enumerate}
 	\\
-	Given the following input:  1-2, 1-3, 1-3, 2-4, 3-5, 4-6, 5-7, 5-7, 6-7.
+    Prove or disprove that this algorithm solves the problem.\\
+    \\
+	Consider the following input:\\
+    $ S = \{(1,3), (3,5), (5,7), (7,9), (2,4), (4,6), (6,8), (2,4), (6,8)\} $.\\
+    It is constructed by concatenating an optimal solution of cardinality $4$:\\
+    $ OPT = \{(1,3), (3,5), (5,7), (7,9)\} $\\
+    with a non-optimal solution of cardinality $3$:\\
+    $ NONOPT = \{(2,4), (4,6), (6,8)\} $\\
+    then adding additional intervals to force the non-optimal $(4,6)$ to be chosen first:\\
+    $ ADD = \{(2,4), (6,8)\}$.\\
+    \\
+    The algorithm does not solve the problem. $S$ yields a non-optimal solution.\\
+	\\
 	\\
 	\noindent
 	2. Consider the following Interval Coloring Problem.\\
