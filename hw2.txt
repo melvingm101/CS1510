@@ -1,0 +1,32 @@
+#3
+Consider the Change Problem in Austria. The input to this problem is an integer L. The output
+should be the minimum cardinality collection of coins required to make L shillings of change (that is,
+you want to use as few coins as possible). In Austria the coins are worth 1, 5, 10, 20, 25, 50 Shillings.
+Assume that you have an unlimited number of coins of each type. Formally prove or disprove that
+the greedy algorithm (that takes as many coins as possible from the highest denominations) correctly
+solves the Change Problem. So for example, to make change for 234 Shillings the greedy algorithms
+would take four 50 shilling coins, one 25 shilling coin, one 5 shilling coin, and four 1 shilling coins.
+
+Consider L = 40 Shillings.
+Greedy output: 25+10+5 = 40.
+Optimal output: 20+20 = 40.
+
+#4
+Consider the Change Problem in Binaryland The input to this problem is an integer L. The output
+should be the minimum cardinality collection of coins required to make L nibbles of change (that
+is, you want to use as few coins as possible). In Binaryland the coins are worth 2^n nibbles, n
+in [0,1000]. Assume that you have an unlimited number of coins of each type. Prove or disprove that the
+greedy algorithm (that takes as many coins of the highest value as possible) solves the change problem
+in Binaryland.
+
+#5
+You wish to drive from point A to point B along a highway minimizing the time that you are stopped for
+gas. You are told beforehand the capacity C of you gas tank in liters, your rate F of fuel consumption
+in liters/kilometer, the rate r in liters/minute at which you can fill your tank at a gas station, and the
+locations A = x1, ...,  B = xn of the gas stations along the highway. So if you stop to fill your tank
+from 2 liters to 8 liters, you would have to stop for 6=r minutes. Consider the following two algorithms:
+(a) Stop at every gas station, and fill the tank with just enough gas to make it to the next gas station.
+(b) Stop if and only if you don't have enough gas to make it to the next gas station, and if you stop,
+fill the tank up all the way.
+For each algorithm either prove or disprove that this algorithm correctly solves the problem. Your
+proof of correctness must use an exchange argument.
