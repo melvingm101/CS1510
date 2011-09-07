@@ -45,7 +45,7 @@
 	\\
 	\\
 	Set $OPT^{\prime}$ = [0, 2, 0], the total remains the same: $OPT^{\prime} \geq OPT$.\\
-	Set $OPT^{\prime\prime}$ = [0, 0, 1], the total remains the same: $OPT^{\prime} \geq OPT$.\\
+	Set $OPT^{\prime\prime}$ = [0, 0, 1], the total remains the same: $OPT^{\prime\prime} \geq OPT^{\prime}$.\\
 	Iterate to $OPT \leq OPT^{\prime} \leq OPT^{\prime\prime} \leq \ldots = GREEDY$\\
 	Therefore, GREEDY is optimal. $\bot$
 	\\ 
@@ -59,7 +59,22 @@
 	\begin{enumerate}
 		\item[(a)] Stop at every gas station, and fill the tank with just enough gas to make it to the next gas station.
 		%answer here
-		
+		\\
+		\\
+		GREEDY(I) = [$g_{0}, \ldots, g_{n}$], where each value represents time spent at each fillup.
+		OPT(I) = [$o_{0}, \ldots, o_{n}$].\\
+		\\
+		Proof: Assume $\exists$ input I $\ni$ GREEDY(I) $\lessthan$ OPT(I)\\
+		At each step in induction: Add the difference between greedy and optimal to the next element, and change the element in optimal to match Greedy.
+		\\ 
+		Given G(I) = [5,6,7] and \\
+		O(I) = [7,5,6]\\
+		\\
+		$O^{\prime}$(I) = [5,7,6], the total remains the same: $OPT^{\prime} \geq OPT$ and driver is guaranteed to reach the next fillup station.\\
+		$O^{\prime\prime}$(I) = [5,6,7], $OPT^{\prime\prime} \geq OPT^{\prime}$\\
+		Iterate to $OPT \leq OPT^{\prime} \leq OPT^{\prime\prime} \leq \ldots = GREEDY$\\
+		Therefore, GREEDY is optimal. $\bot$
+		\\
 		\item[(b)] Stop if and only if you don’t have enough gas to make it to the next gas station, and if you stop,
 		fill the tank up all the way.
 		%answer here
