@@ -1,0 +1,45 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Greedy Algorithm Problems\\
+	9.8.2011
+	\end{flushright}
+	\noindent
+	6.  Consider the following problem. The input is a collection $A = \{a_{1}, \ldots , a_{n} \}$ of n points on the real line.
+	The problem is to find a minimum cardinality collection $S$ of unit intervals that cover every point in
+	$A$. Another way to think about this same problem is the following. You know a collection of times ($A$)
+	that trains will arrive at a station. When a train arrives there must be someone manning the station.
+	Due to union rules, each employee can work at most one hour at the station. The problem is to find a
+	scheduling of employees that covers all the times in $A$ and uses the fewest number of employees.
+	\begin{enumerate}
+		\item[(a)] Prove or disprove that the following algorithm correctly solves this problem. Let $I$ be the interval
+		that covers the most number of points in $A$. Add $I$ to the solution set $S$. Then recursively continue on the points in 
+		$A$ not covered by $I$.
+		% answer here
+		\item[(b)] Prove or disprove that the following algorithm correctly solves this problem. Let $a_{j}$ be the smallest
+		(leftmost) point in $A$.  Add the interval $I = (a_{j} , a_{j} + 1)$ to the solution set $S$.  Then recursively
+		continue on the points in $A$ not covered by $I$.
+		%answer here
+	\end{enumerate}
+	7. Consider the following problem.  The input consists of the lengths $\ell_{1}, \ldots , \ell_{n}$, and access probabilities
+		$p_{1} , \ldots , p_{n}$, for $n$ files $F_{1} , \ldots , F_{n}$.  The problem is to order these files on a tape so as to minimize the
+		expected access time. If the files are placed in the order $F_{s(1)} , \ldots , F_{s(n)}$ then the expected access time
+		is
+		
+	\[\sum\limits_{i=1}^n P_{s(i)} \sum\limits_{j=1}^{s(i)} \ell_{s(j)}\]
+	
+	For each of the below algorithms, either give a proof that the algorithm is correct, or a proof that the
+	algorithm is incorrect.
+	\begin{enumerate}
+		\item[(a)] Order the files from shortest to longest on the tape. That is, $\ell_{i} < \ell_{j}$ implies that $s(i) < s(j)$.
+		%answer here
+		\item[(b)] Order the files from most likely to be accessed to least likely to be accessed.  That is, $p_{i} < p_{j}$
+		implies that $s(i) > s(j)$.
+		%answer here
+		\item[(c)] Order the the files from smallest ratio of length over access probability to largest ratio of length
+		over access probability. That is, $\frac{\ell_{i}}{p_{i}} < \frac{\ell_{j}}{p_{j}}$ implies that $s(i) < s(j)$.
+		%answer here	
+	\end{enumerate}
+\end{document}
