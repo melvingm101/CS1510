@@ -1,5 +1,6 @@
 \documentclass[10pt]{article}
 \usepackage{fullpage}
+\usepackage{graphicx}
 \begin{document}
 	\begin{flushright}
 	Lindsey Bieda and Joe Frambach\\
@@ -18,10 +19,34 @@
 		that covers the most number of points in $A$. Add $I$ to the solution set $S$. Then recursively continue on the points in 
 		$A$ not covered by $I$.
 		% answer here
+		\\
+		\\
+		Counter-example: 
+		
+		\begin{figure}[h]
+			\centering
+				\caption{Solid Line is algorithm 6a and Dotted represents optimal}
+				\includegraphics{counterexample7a.png}
+		\end{figure}
+
 		\item[(b)] Prove or disprove that the following algorithm correctly solves this problem. Let $a_{j}$ be the smallest
 		(leftmost) point in $A$.  Add the interval $I = (a_{j} , a_{j} + 1)$ to the solution set $S$.  Then recursively
 		continue on the points in $A$ not covered by $I$.
 		%answer here
+		\\
+		Prove that algorithm 6b is correct.
+		\\
+		\\
+		Proof: $\exists$ input I $\ni$ algorithm 6b will produce incorrect output.\\
+		\\
+		$GRE(I) = [(g_{0},g_{0} + i), \ldots, (g_{n}, g_{n} + i)]$, where $i$ is the interval length\\
+		$OPT(I) = [(o_{0},o_{0} + i), \ldots, (o_{n}, o_{n} + i)]$, where OPT(I)'s output is the one that agrees with GRE(I) for the most steps, $k$\\
+		Let the first point of disagreement be $(o_{k}, o_{k}+1)$, therefore because greedy selected $g_{k}$ we know that $o_{k} < g_{k}$, otherwise 
+		OPT would not cover point $g_{k}$ and would not be a correct solution.\\ 
+		$OPT^{\prime} = OPT(I) - (o_{k}, o_{k} + i) + (g_{k}, g_{k} + i)$, $OPT^{\prime}$ retains optimal cardinality \\
+		The space between $o_{k}$ and $g_{k}$ contains no points, since optimal agreed with greedy up to $k$.\\
+		The inclusion space between $o_{k}+i$ and $g_{k}+i$ may only increase $OPT^{\prime}$'s cover, therefore $OPT \leq OPT^{\prime}$.\\
+		Therefore, $OPT \leq OPT^{\prime} \leq OPT^{\prime\prime} \leq \ldots = GRE \bot$ 
 	\end{enumerate}
 	7. Consider the following problem.  The input consists of the lengths $\ell_{1}, \ldots , \ell_{n}$, and access probabilities
 		$p_{1} , \ldots , p_{n}$, for $n$ files $F_{1} , \ldots , F_{n}$.  The problem is to order these files on a tape so as to minimize the
