@@ -53,18 +53,78 @@
 		expected access time. If the files are placed in the order $F_{s(1)} , \ldots , F_{s(n)}$ then the expected access time
 		is
 		
-	\[\sum\limits_{i=1}^n P_{s(i)} \sum\limits_{j=1}^{s(i)} \ell_{s(j)}\]
+	\[E(time) = \sum\limits_{i=1}^n P_{s(i)} \sum\limits_{j=1}^{s(i)} \ell_{s(j)}\]
 	
 	For each of the below algorithms, either give a proof that the algorithm is correct, or a proof that the
 	algorithm is incorrect.
 	\begin{enumerate}
 		\item[(a)] Order the files from shortest to longest on the tape. That is, $\ell_{i} < \ell_{j}$ implies that $s(i) < s(j)$.
 		%answer here
+		
+	\[ I = \left[
+		\begin{array}{ccc}
+		p_{0} & \ldots & p_{n}\\ 
+		\ell_{0} & \ldots & \ell_{n}
+		\end{array}
+	 \right]\]
+	 
+	 Counter-example: 
+	 
+	\[ I = \left[
+		\begin{array}{cc}
+		0.01 &  0.99\\ 
+		4 & 5 
+		\end{array}
+	 \right]\]
+	 
+	 Algorithm 7a = 8.95, however, optimal produces 5.04
+	 
 		\item[(b)] Order the files from most likely to be accessed to least likely to be accessed.  That is, $p_{i} < p_{j}$
 		implies that $s(i) > s(j)$.
 		%answer here
+	 Counter-example: 
+	 
+	\[ I = \left[
+		\begin{array}{cc}
+		0.5001 &  0.4999\\ 
+		1000 & 1 
+		\end{array}
+	 \right]\]
+	 	
+	 	Algorithm 7a = 1000.4999, however, optimal produces 501.1
+	 		
 		\item[(c)] Order the the files from smallest ratio of length over access probability to largest ratio of length
 		over access probability. That is, $\frac{\ell_{i}}{p_{i}} < \frac{\ell_{j}}{p_{j}}$ implies that $s(i) < s(j)$.
-		%answer here	
+		%answer here
+		\\
+		\\
+		Prove that algorithm 7c is correct. 
+		\\
+		Proof: $\exists$ input I $\ni$ algorithm 7c will produce incorrect output.\\
+		$GRE(I) = \left[
+		\begin{array}{ccc}
+		gp_{0} & \ldots & gp_{n}\\ 
+		g\ell_{0} & \ldots & g\ell_{n}
+		\end{array}
+	 \right]$ 
+	 \\
+	 \\
+		$OPT(I) = \left[
+		\begin{array}{ccc}
+		op_{0} & \ldots & op_{n}\\ 
+		o\ell_{0} & \ldots & o\ell_{n}
+		\end{array}
+	 \right]$ where OPT(I)'s output is the one that agrees with GRE(I) for the most steps, $k$\\
+	 \\
+	 Let the first point of disagreement be point $k$, where $\frac{\ell_{k}}{p_{k}} > \frac{\ell_{k+1}}{p_{k+1}}$, therefore $\ell_{k} p_{k+1} > \ell_{k+1} p_{k}$\\
+	 
+	 $E(time) = p_{0}\ell_{0} + \ldots + p_{k}(\ell_{0}+\ldots+\ell_{k}) + \underbrace{p_{k+1}(\ell_{0}+\ldots+\ell_{k}+\ell_{k+1})}{} + \ldots + p_{n}(\ell_{0}+\ldots+\ell_{n})$\\
+	 \\
+	 $p_{k+1}(\ell_{0}+\ldots+\ell_{k}+\ell_{k+1})$\\
+	 $= p_{k+1}(\ell_{0}+\ldots+\ell_{k-1}) + p_{k+1}\ell_{k}+p_{k+1}\ell_{k+1}$\\
+	 $> p_{k+1}(\ell_{0}+\ldots+\ell_{k-1}) + p_{k}\ell_{k+1}+p_{k+1}\ell_{k+1}$
+	 \\
+	 This shows that any modification made to OPT results in a larger average access time. Therefore, OPT is not optimal. $\bot$
+	 
 	\end{enumerate}
 \end{document}
