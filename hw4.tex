@@ -1,0 +1,73 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\newcommand{\tab}{\hspace*{2em}}
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Greedy Algorithm Problems\\
+	9.8.2011
+	\end{flushright}
+	\noindent
+	8. Consider the following problem.  The input consists of $n$ skiers with heights $p_{1}, \ldots, p_{n}$, and $n$ skis
+	with heights $s_{1}, \ldots, s{n}$. The problem is to assign each skier a ski to to minimize the average difference
+	between the height of a skier and his/her assigned ski. That is, if the ith skier is given the $a(i)$th ski,
+	then you want to minimize:
+	
+	\[ \frac{1}{n}\sum\limits_{i=1}^n|~p_{i} - s_{a(i)}~|\]
+	\begin{enumerate}
+		\item[(a)] Consider the following greedy algorithm. Find the skier and ski whose height difference is minimized. 
+		Assign this skier this ski. Repeat the process until every skier has a ski. Prove of disprove
+		that this algorithm is correct.
+		
+		% answer here
+		
+		\item[(b)] Consider the following greedy algorithm. Give the shortest skier the shortest ski, give the second
+		shortest skier the second shortest ski, give the third shortest skier the third shortest ski, etc.
+		Prove of disprove that this algorithm is correct.
+		
+		% answer here
+		 
+	\end{enumerate}
+	12.  We consider the following scheduling problem:\\
+	\\
+	INPUT: A collection of jobs $J_{1}, \ldots , J_{n}$, where the $i$th job is a tuple $(r_{i}, x_{i})$ of non-negative integers
+	specifying the release time and size of the job.
+	OUTPUT: A preemptive feasible schedule for these jobs on one processor that minimizes the total completion time 
+	$\sum_{i=1}^n C_{i}$.\\
+	\\
+	A \textit{schedule} specifes for each unit time interval, the unique job that that is run during that time interval.
+	In a \textit{feasible} schedule, every job $J_{i}$ has to be run for exactly $x_{i}$ time units after time $r_{i}$ . The \textit{completion}
+	time $C_{i}$ for job $J_{i}$ is the earliest time when $J_{i}$ has been run for $x_{i}$ time units. Examples of these basic
+	definitions can be found below.\\
+	\\
+	We consider two greedy algorithms for solving this problem that schedule times in an online fashion,
+	that is the algorithms are of the following form:\\
+	\\
+	$t = 0$\\
+	while there are jobs left not completely scheduled\\
+	\tab Among those jobs J i such that r i = t, and that have previously been scheduled for less\\
+	\tab \tab than x i time units, pick a job J m to schedule at time t according to some rule;\\
+	\tab increment t\\
+	\\
+	One can get different greedy algorithms depending on the rule for selecting $J_{m}$. For each of the following
+	greedy algorithms, prove or disprove that the algorithm is correct.  Proofs of correctness must use an
+	exchange argument.\\
+	\\
+	\textbf{SJF:} Pick $J_{m}$ to be the job with minimal size $x_{i}$. Ties may be broken arbitrarily.\\
+	\\
+	\textbf{SRPT:} Let $y_{i,t}$ be the total time that job $J_{i}$ has been run before time $t$. Pick $J_{m}$ to be a job that has
+	minimal remaining processing time, that it, that has minimal $x_{i} - y_{i,t}$. Ties may be broken arbitrarily.\\
+	\\
+	As an example of SJF and SRPT consider the following instance:  $J_{1} = (0, 100)$, $J_{2} = (10, 10)$ and
+	$J_{3} = (1, 4)$. Both SJF and SRPT schedule job $J_{1}$ between time 0 and time 1, and job $J _{3}$ between time
+	1 and time 5, when job $J_{3}$ completes, and job $J_{1}$ again between time 5 and time 10. At time 10, SJF
+	schedules job $J_{2}$ because its original size 10 is less than job $J_{1}$’s original size 100.  At time 10, SRPT
+	schedules job $J_{2}$ because its remaining processing time 10 is less than job $J_{1}$’s remaining processing
+	time 94. Both SJF and SRPT schedule job $J_{2}$ between time 10 and 20, when $J_{2}$ completes, and then
+	job $J_{1}$ from time 20 until time 114, which job $J_{1}$ completes.  Thus for both SJF and SRPT on this
+	instance $C_{1} = 114$, $C_{2} = 20$ and $C_{3} = 5$ and thus both SJF and SRPT have total completion time 139.
+	
+	%answer here
+	
+\end{document}
