@@ -100,6 +100,39 @@
 	$J_{3}$ runs from time 5 to 7, completing in $C_{3}$ = 7.
 	Total completion time is 14.\\
 	Therefore, SJF is not optimal since SJF $<$ SRPT.\\
+	\\
+	\\
+	Thm: SRPT(I) is correct.\\
+	Proof: Assume $\exists$ input $I$ $\ni$ SRPT($I$) is incorrect.\\
+	\\
+	SRPT($I$) returns an ordered list of processes to run at each time interval.\\
+	SRPT($I$) = $[J_{s(0)}, J_{s(1)}, ..., J_{s(n)}]$, where s(i) represents which job is to run at time i.\\
+	OPT($I$)  = $[J_{o(0)}, J_{o(1)}, ..., J_{o(n)}]$, where o(i) represents which job is to run at time i, and OPT matches SRPT for the most number of steps.\\
+	Let $k$ be the first step which OPT($I$) disagrees with SRPT($I$); OPT($I$)[j] == SRPT($I$)[j] $\forall j < k$.\\
+	\\
+	Let job $J_{s(k)}$ have completion time $C_{SRPT}(k)$ and let job $J_{o(k)}$ have completion time $C_{OPT}(k)$.\\
+	Let job $J_{s(k)}$ have remaining time $R_{SRPT}(k)$ and let job $J_{o(k)}$ have remaining time $R_{OPT}(k)$.\\
+	Since SRPT chose $J_{s(k)}$ rather than $J_{o(k)}$, $R_{SRPT}(k) < R_{OPT}(k)$.\\
+	\\
+	Construct $OPT^{\prime}$ by modifying $OPT$, allocating the next $R_{SRPT}(k)$ time to Job $J_{s(k)}$,
+	followed by $R_{OPT}(k)$ time to Job $J_{o(k)}$, effectively swapping the positions of the jobs in OPT.\\
+	\\
 	
+	If $C_{SRPT}(k)$ == $C_{OPT}(k)$:\\
+	Then OPT can be considered equal to SRPT for step $k$.\\
+	
+	If $C_{SRPT}(k) > C_{OPT}(k)$:\\
+	Then Job $J_{s(k)}$ will be able to finish earlier than $J_{o(k)}$ originally did,
+	and Job $J_{o(k)}$ will finish at the same time as $J_{s(k)}$ originally did,
+	since both jobs cumulative finish times were unchanged by swapping.\\
+	Therefore, in this case, $OPT^\prime > OPT$.\\
+	
+	If $C_{SRPT}(k) < C_{OPT}(k)$:\\
+	Then Job $J_{s(k)}$ will be able to finish earlier than $J_{o(k)}$ originally did,
+	and Job $J_{o(k)}$ will finish at the same time as $J_{s(k)}$ originally did,
+	since both jobs cumulative finish times were unchanged by swapping.\\
+	Therefore, in this case, $OPT^\prime > OPT$.\\
+	
+	In all cases, $OPT^\prime > OPT$. $\bot$.\\
 	
 \end{document}
