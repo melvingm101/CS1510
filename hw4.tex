@@ -18,10 +18,16 @@
 	\begin{enumerate}
 		\item[(a)] Consider the following greedy algorithm. Find the skier and ski whose height difference is minimized. 
 		Assign this skier this ski. Repeat the process until every skier has a ski. Prove of disprove
-		that this algorithm is correct.
-		
+		that this algorithm is correct.\\
+		\\
 		% answer here
-		
+		This algorithm does not correctly solve the problem. Consider the following inputs:\\
+		skiers = (0.3, 0.3, 0.5, 0.7, 0.7)\\
+		ski heights = (0.4, 0.4, 0.4, 0.59, 0.6)\\
+		\\
+		$GRE = 0.09 + 0.1 + 0.1 + 0.1 + 0.3 = 0.59/5 = 0.118$\\
+		$OPT = 0.1 + 0.1 + 0.1 + 0.11 + 0.1 =  0.51/5 = 0.102$\\
+		\\
 		\item[(b)] Consider the following greedy algorithm. Give the shortest skier the shortest ski, give the second
 		shortest skier the second shortest ski, give the third shortest skier the third shortest ski, etc.
 		Prove of disprove that this algorithm is correct.
