@@ -49,7 +49,7 @@
 	12.  We consider the following scheduling problem:\\
 	\\
 	INPUT: A collection of jobs $J_{1}, \ldots , J_{n}$, where the $i$th job is a tuple $(r_{i}, x_{i})$ of non-negative integers
-	specifying the release time and size of the job.
+	specifying the release time and size of the job.\\
 	OUTPUT: A preemptive feasible schedule for these jobs on one processor that minimizes the total completion time 
 	$\sum_{i=1}^n C_{i}$.\\
 	\\
@@ -63,9 +63,9 @@
 	\\
 	$t = 0$\\
 	while there are jobs left not completely scheduled\\
-	\tab Among those jobs J i such that r i = t, and that have previously been scheduled for less\\
-	\tab \tab than x i time units, pick a job J m to schedule at time t according to some rule;\\
-	\tab increment t\\
+	\tab Among those jobs $J_{i}$ such that $r_{i} \leq t$, and that have previously been scheduled for less\\
+	\tab \tab than $x_{i}$ time units, pick a job $J_{m}$ to schedule at time $t$ according to some rule;\\
+	\tab increment $t$\\
 	\\
 	One can get different greedy algorithms depending on the rule for selecting $J_{m}$. For each of the following
 	greedy algorithms, prove or disprove that the algorithm is correct.  Proofs of correctness must use an
@@ -79,12 +79,27 @@
 	As an example of SJF and SRPT consider the following instance:  $J_{1} = (0, 100)$, $J_{2} = (10, 10)$ and
 	$J_{3} = (1, 4)$. Both SJF and SRPT schedule job $J_{1}$ between time 0 and time 1, and job $J _{3}$ between time
 	1 and time 5, when job $J_{3}$ completes, and job $J_{1}$ again between time 5 and time 10. At time 10, SJF
-	schedules job $J_{2}$ because its original size 10 is less than job $J_{1}$’s original size 100.  At time 10, SRPT
-	schedules job $J_{2}$ because its remaining processing time 10 is less than job $J_{1}$’s remaining processing
+	schedules job $J_{2}$ because its original size 10 is less than job $J_{1}$'s original size 100.  At time 10, SRPT
+	schedules job $J_{2}$ because its remaining processing time 10 is less than job $J_{1}$'s remaining processing
 	time 94. Both SJF and SRPT schedule job $J_{2}$ between time 10 and 20, when $J_{2}$ completes, and then
 	job $J_{1}$ from time 20 until time 114, which job $J_{1}$ completes.  Thus for both SJF and SRPT on this
-	instance $C_{1} = 114$, $C_{2} = 20$ and $C_{3} = 5$ and thus both SJF and SRPT have total completion time 139.
-	
+	instance $C_{1} = 114$, $C_{2} = 20$ and $C_{3} = 5$ and thus both SJF and SRPT have total completion time 139.\\
+	\\
 	%answer here
+	\\
+	Consider the following jobs: $J = [(0,2), (0,3), (4,2)]$.\\
+	SJF:
+	$J_{1}$ runs from time 0 to 2, completing in $C_{1}$ = 2.
+	$J_{2}$ runs from time 2 to 4.
+	$J_{3}$ runs from time 4 to 6, completing in $C_{3}$ = 6.
+	$J_{2}$ runs from time 6 to 7, completing in $C_{2}$ = 7.
+	Total completion time for SJF is 15.\\
+	SRPT:
+	$J_{1}$ runs from time 0 to 2, completing in $C_{1}$ = 2.
+	$J_{2}$ runs from time 2 to 5, completing in $C_{2}$ = 5.
+	$J_{3}$ runs from time 5 to 7, completing in $C_{3}$ = 7.
+	Total completion time is 14.\\
+	Therefore, SJF is not optimal since SJF $<$ SRPT.\\
+	
 	
 \end{document}
