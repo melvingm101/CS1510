@@ -30,10 +30,21 @@
 		\\
 		\item[(b)] Consider the following greedy algorithm. Give the shortest skier the shortest ski, give the second
 		shortest skier the second shortest ski, give the third shortest skier the third shortest ski, etc.
-		Prove of disprove that this algorithm is correct.
-		
+		Prove of disprove that this algorithm is correct.\\
+		\\
 		% answer here
-		 
+		Prove that algorithm 8b is correct.\\
+		\\
+		Proof: $\exists$ input $I$ $\ni$ algorithm 8b will produce incorrect output.\\
+		\\
+		$GRE(I) = \{(G_{p_{1}}, G_{s_{1}}), \ldots, (G_{p_{n}},G_{s_{n}})\}$\\
+		$OPT(I) = \{(O_{p_{1}}, O_{s_{1}}), \ldots, (O_{p_{n}},O_{s_{n}})\}$, where $OPT(I)$ agrees with $GRE(I)$ for the most steps, $k$\\
+		Let $k$ be the first point of disagreement between algorithm 8b's output and the optimal output. 
+
+		We generate $OPT^{\prime}$ by swapping $O_{p_{k}}$ with $O_{p_{k+i}}$, where $O_{p_{k+i}}$ = $G_{p_{k}}$ and swapping $O_{s_{k}}$ 
+		with $O_{s_{k+i}}$, where $O_{s_{k+i}}$ = $G_{s_{k}}$. Since, greedy selects skiers and skis from smallest to the largest we know
+		that $G_{p_{k}} \leq O_{p_{k}}$ and $G_{s_{k}} \leq O_{s_{k}}$, and therefore $|G_{p_{k}} - G_{s_{k}}| \leq |O_{p_{k}} - O_{s_{k}}|$.
+		Thus $OPT^{\prime}$ is $\geq$ OPT, and $OPT \leq OPT^{\prime} \leq OPT^{\prime\prime} \leq \ldots = GRE \bot$
 	\end{enumerate}
 	12.  We consider the following scheduling problem:\\
 	\\
