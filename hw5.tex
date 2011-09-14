@@ -24,7 +24,42 @@
 			      else place the ith word on a new line
 			\end{verbatim}
 			% answer here
+			Prove that the greedy algorithm is correct.\\
+			Proof: Assume $\exists$ input I $\ni$ GRE(I) $<$ OPT(I), let OPT be the optimal solution that agrees with greedy
+			for the most steps, $k$.\\
 			\\
+			$GRE(I) = 
+			\begin{array}{ccccc}
+				w_{0} & w_{1} & \ldots & w_{k-1} & w_{k}\\
+				w_{k+1} & w_{k+2} & \ldots & w_{n}\\  
+			\end{array}\bigg\}, k = N L - \sum w$, where N is the numner of lines
+			\\
+			\\
+			$OPT(I) = 
+			\begin{array}{ccccc}
+				w_{0} & w_{1} & \ldots & w_{k-1}\\
+				w_{k} & w_{k+1} & \ldots & w_{n-1}\\
+				w_{n}  
+			\end{array}\bigg\}, k = N L - \sum w$\\
+			Let the first point of disagreement be at point $k$. We can construct $OPT^{\prime}$ as the following.\\
+			$OPT^{\prime}(I) = 
+			\begin{array}{ccccc}
+				w_{0} & w_{1} & \ldots & w_{k}\\
+				w_{k+1} & w_{k+2} & \ldots & w_{n-1}\\
+				w_{n}  
+			\end{array}\bigg\}, k = N L - \sum w$\\
+			\\
+			At this point $k$ is non-increasing, so $OPT^{\prime} \geq OPT$, and we can construct $OPT^{\prime\prime}$ which
+			will agree with greedy for an additional step.\\
+			\\
+			$OPT^{\prime\prime}(I) = 
+			\begin{array}{ccccc}
+				w_{0} & w_{1} & \ldots & w_{k}\\
+				w_{k+1} & w_{k+2} & \ldots & w_{n}
+			\end{array}\bigg\}, k = (N - 1) L - \sum w$\\
+			\\	
+			$OPT \leq OPT^{\prime} \leq OPT^{\prime\prime} \leq \ldots = GRE \bot$\\
+			\\					 
 	10. The input to this problem consists of an ordered list of $n$ words. The length of the $i$th word is $w_{i}$ , that
 			is the $i$th word takes up $w_{i}$ spaces.  (For simplicity assume that there are no spaces between words.)
 			The goal is to break this ordered list of words into lines, this is called a layout. Note that you can not
@@ -40,7 +75,26 @@
 			       else place the ith word on a new line
 			\end{verbatim}
 			%answer here
+			\newpage
+			\noindent
+			Counter-exmaple:\\
+			Consider the following input: $I$ = [2, 1, 1] and $L$ = 3,\\
+			GRE(I) = $
+			\begin{array}{ccc}
+				2 & 1 & k = 0\\
+				1 &   & k = 2\\
+				  &   & max(k) = 2
+			\end{array}$
 			\\
+			\\
+			\\
+			OPT(I) = $
+			\begin{array}{ccc}
+				2 &   & k = 1\\
+				1 & 1 & k = 1\\
+				  &   & max(k) = 1
+			\end{array}$\\
+			\\			
 	13. Consider the following problem.\\
 			INPUT: Positive integers $r_{1}, \ldots, r_{n}$ and $c_{1}, \ldots , c_{n}$.\\
 			OUTPUT: An $n$ by $n$ matrix $A$ with 0/1 entries such that for all $i$ the sum of the $i$th row in $A$ is $r_{i}$
