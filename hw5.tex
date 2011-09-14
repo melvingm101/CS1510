@@ -1,0 +1,60 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\newcommand{\tab}{\hspace*{2em}}
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Greedy Algorithm Problems\\
+	9.11.2011
+	\end{flushright}
+	\noindent
+	9.  The input to this problem consists of an ordered list of $n$ words. The length of the $i$th word is $w_{i}$, that
+			is the ith word takes up $w_{i}$ spaces.  (For simplicity assume that there are no spaces between words.)
+			The goal is to break this ordered list of words into lines, this is called a layout. Note that you can not
+			reorder the words.  The length of a line is the sum of the lengths of the words on that line. The ideal
+			line length is $L$. No line may be longer than $L$, although it may be shorter.  The penalty for having a
+			line of length $K$ is $L - K$. \textit{The total penalty is the \textbf{sum} of the line penalties}. The problem is to find a
+			layout that minimizes the total penalty.\\
+			Prove of disprove that the following greedy algorithm correctly solves this problem.
+			
+			\begin{verbatim}
+			For i= 1 to n
+			     Place the ith word on the current line if it fits
+			      else place the ith word on a new line
+			\end{verbatim}
+			% answer here
+			\\
+	10. The input to this problem consists of an ordered list of $n$ words. The length of the $i$th word is $w_{i}$ , that
+			is the $i$th word takes up $w_{i}$ spaces.  (For simplicity assume that there are no spaces between words.)
+			The goal is to break this ordered list of words into lines, this is called a layout. Note that you can not
+			reorder the words.  The length of a line is the sum of the lengths of the words on that line. The ideal
+			line length is $L$. No line may be longer than $L$, although it may be shorter.  The penalty for having a
+			line of length $K$ is $L - K$. The total penalty is the maximum of the line penalties. The problem is to
+			find a layout that minimizes the total penalty.\\
+			Prove of disprove that the following greedy algorithm correctly solves this problem.
+			
+			\begin{verbatim}
+			For i= 1 to n
+			     Place the ith word on the current line if it fits
+			       else place the ith word on a new line
+			\end{verbatim}
+			%answer here
+			\\
+	13. Consider the following problem.\\
+			INPUT: Positive integers $r_{1}, \ldots, r_{n}$ and $c_{1}, \ldots , c_{n}$.\\
+			OUTPUT: An $n$ by $n$ matrix $A$ with 0/1 entries such that for all $i$ the sum of the $i$th row in $A$ is $r_{i}$
+			and the sum of the $i$th column in $A$ is $c_{i}$, if such a matrix exists.\\
+			Think of the problem this way.  You want to put pawns on an $n$ by $n$ chessboard so that the $i$th row
+			has $r_{i}$ pawns and the $i$th column has $c_{i}$ pawns.\\
+			Consider the following greedy algorithm that constructs $A$ row by row.  Assume that the first $i - 1$
+			rows have been constructed. Let a $j$ be the number of 1’s in the $j$th column in the first $i - 1$ rows. Now
+			the $r_{i}$ columns with with maximum $c_{j} - a_{j}$ are assigned 1’s in row $i$, and the rest of the columns are
+			assigned 0’s. That is, the columns that still needs the most 1’s are given 1’s. Formally prove that this
+			algorithm is correct.\\
+			\\
+			%answer here
+	
+\end{document}
+	
+	
