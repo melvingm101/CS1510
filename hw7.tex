@@ -29,9 +29,30 @@
 	\\
 	2. Give a polynomial time algorithm that takes three strings, $A$, $B$ and $C$, as input, and returns the
 		 longest sequence $S$ that is a subsequence of $A$, $B$, and $C$.\\
-		 \\
 		 %answer here
+		\begin{verbatim}
+		 3LCS(string A, B, C):
+		    return LCS(LCS(A,B), C)
+		
+		 LCS(string A, B):
+		   m = length of A
+		   n = length of B
+		
+		   for i = 1 to m do LCS[i,0] = 0
+		   for i = 1 to m do LCS[0,i] = 0
+		   
+		   for i = 1 to m do:
+		       for j = 1 to n do:
+		           If A[i] = B[j] then LCS[i,j] = LCS[i-1,j-1] + 1
+		           else LCS[i,j] = max(LCS[i-1,j], LCS[i,j-1])
+		            
+		   return string from traceback 
+		\end{verbatim}
 		 \\
+		 LCS builds an $n \times n$ table and traceback moves left or up once per iteration. Therefore, we determine
+		 that the traceback takes $O(n)$ time and LCS takes $O(n^2)$ time, so our algorithm takes $O(n^2)$ time.\\ 
+		 		 
+		 \noindent
 	3. Give an efficient algorithm for finding the shortest common super-sequence of two strings $A$ and $B$. $C$
 		 is a super-sequence of $A$ if and only if $A$ is a subsequence of $C$.\\
 		 HINT: Obviously this problem is very similar to the problem of finding the longest common sub-
