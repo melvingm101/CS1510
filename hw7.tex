@@ -1,0 +1,52 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\newcommand{\tab}{\hspace*{2em}}
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Greedy Algorithm and Dynamic Programming Problems\\
+	9.18.2011
+	\end{flushright}
+	\noindent
+	\textbf{(extra credit)} 14. Consider the generalization of the U2 bridge crossing problem where n people with speeds $s_1,\ldots, s_n$
+															wish to cross the bridge as quickly as possible. The rules remain:
+	
+	\begin{itemize}
+		\item It is nighttime and you only have one flashlight.
+		\item A maximum of two people can cross at any one time
+		\item Any party who crosses, either 1 or 2 people must have the ?ashlight with them.
+		\item The flashlight must be walked back and forth, it cannot be thrown, etc.
+		\item A pair must walk together at the rate of the slower person’s pace.
+	\end{itemize}
+	
+	\noindent
+	Give an efficient algorithm to find the fastest way to get a group of people across the bridge.  You
+	\textbf{must} have a proof of correctness for your method.\\
+	\\
+	%answer here
+	\\
+	2. Give a polynomial time algorithm that takes three strings, $A$, $B$ and $C$, as input, and returns the
+		 longest sequence $S$ that is a subsequence of $A$, $B$, and $C$.\\
+		 \\
+		 %answer here
+		 \\
+	3. Give an efficient algorithm for finding the shortest common super-sequence of two strings $A$ and $B$. $C$
+		 is a super-sequence of $A$ if and only if $A$ is a subsequence of $C$.\\
+		 HINT: Obviously this problem is very similar to the problem of finding the longest common sub-
+		 sequence.   You  should  try  to  first  figure  out  how  to  compute  the  length  of  the  shortest  common
+		 super-sequence.\\
+		 \\
+		 % answer here
+		 \\
+	4. Consider the algorithm that you developed for the previous problem.
+	
+		\begin{enumerate}
+			\item[(a)] Show the table that your algorithm constructs for the inputs $A = zxyyzz$, and $B = zzyxzy$
+			\item[(b)] Explain how to ?nd the length of the shortest common super-sequence in your table.
+			\item[(c)] Explain how to compute the actual shortest common super-sequence from your table by tracing
+								 back from the table entry that gives the length of the shortest common super-sequence.
+		\end{enumerate}
+		% answer here
+\end{document}
