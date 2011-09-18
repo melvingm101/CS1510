@@ -39,7 +39,7 @@
 										preference and solid is a marriage. For this to be the case some stage S (fig. 1) must occur.\\
 										\begin{figure}[h]
 											\centering
-												\includegraphics{15b.png}
+												\includegraphics{/Users/lindsey/Documents/class/CS1510/15b.png}
 											  \caption{stage S.}
 										\end{figure}
 										\linebreak
@@ -66,8 +66,6 @@
 										a woman pessimal stable marriage.
 										% answer here
 			\end{enumerate}
-	\\
-	\\
 	1. Consider the recurrence relation $T(0) = T(1) = 2$ and for $n > 1$
 	
 	\[T(n) = \sum\limits_{i=1}^{n-1} T(i)T(i-1) \]
@@ -80,7 +78,7 @@
 								% answer here
 										\begin{figure}[h]
 											\centering
-												\includegraphics{1a.png}
+												\includegraphics{/Users/lindsey/Documents/class/CS1510/1a.png}
 											  \caption{Part of the call tree.}
 										\end{figure}
 										The above call tree will have a depth of $n$, each node requires $O(n)$ function calls and 
@@ -92,7 +90,7 @@
 								% answer here
 										\\
 										\\
-										\begin{array}{cccc}
+										$\begin{array}{cccc}
 											function~call & additions & multiplications & function~calls\\
 											T(n) & n-1 & n-1 & 2(n-1)\\
 											T(n-1) & n-2 & n-2 & 2(n-2)\\
@@ -100,7 +98,7 @@
 											T(2) & 1 & 1 & 2\\
 											T(1) & 0 & 0 & 0\\
 											T(0) & 0 & 0 & 0
-										\end{array}
+										\end{array}$
 										\\
 										T(n) requires $\frac{(n-1)^2 - (n-2)}{2} + \frac{(n-1)^2 - (n-2)}{2} = (n-1)^2 - (n-2) = 0(n^2)$
 		\item[(c)]	Give an algorithm for this problem that only uses $O(n)$ arithmetic operations.
@@ -113,7 +111,6 @@
 									For i = 2 to n
 									    T[i] = T[i-1]*(1 + T[i-2])								
 								\end{verbatim}
-								\\
 								Requires $n$ iterations and is therefore $O(n)$.
 	\end{enumerate}
 \end{document}
