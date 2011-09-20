@@ -18,7 +18,7 @@
 		\item A maximum of two people can cross at any one time
 		\item Any party who crosses, either 1 or 2 people must have the ?ashlight with them.
 		\item The flashlight must be walked back and forth, it cannot be thrown, etc.
-		\item A pair must walk together at the rate of the slower person’s pace.
+		\item A pair must walk together at the rate of the slower personï¿½s pace.
 	\end{itemize}
 	
 	\noindent
@@ -58,13 +58,11 @@
 	  \item $GRE(I) = [\ldots, y_k, \ldots, (w,z) \ldots]$\\
 	  $OPT(I) = [\ldots, z, \ldots, (v,y_k), \ldots]$, where $OPT$ agrees with GRE for most steps, $k$.\\
 	\end{itemize}
-	\\
 	In all cases, we create an $OPT^\prime$ such that $OPT^\prime \geq OPT$.\\
 	$GRE = \ldots \geq OPT^{\prime\prime} \geq OPT^\prime \geq OPT.~\bot.$
 	\\
 	
 	%answer here
-	\\
 	\newpage
 	2. Give a polynomial time algorithm that takes three strings, $A$, $B$ and $C$, as input, and returns the
 		 longest sequence $S$ that is a subsequence of $A$, $B$, and $C$.\\
@@ -87,7 +85,6 @@
 		            
 		   return string from traceback 
 		\end{verbatim}
-		 \\
 		 LCS builds an $n \times n$ table and traceback moves left or up once per iteration. Therefore, we determine
 		 that the traceback takes $O(n)$ time and LCS takes $O(n^2)$ time, so our algorithm takes $O(n^2)$ time.\\ 
 		 		 
@@ -113,7 +110,6 @@
 		             
 		     return string from traceback
 		 \end{verbatim}
-		 \\
 		 \newpage
 	4. Consider the algorithm that you developed for the previous problem.
 	
@@ -123,8 +119,8 @@
 			\\
 			\begin{tabular}{| c | c | c | c | c | c | c | c | c |}
 				\hline
-				 & \epsilon & z & x & y & y & z & z\\ \hline
-				 \epsilon & 0 & 1 & 2 & 3 & 4 & 5 & 6\\ \hline 
+				 & $\epsilon$ & z & x & y & y & z & z\\ \hline
+				 $\epsilon$ & 0 & 1 & 2 & 3 & 4 & 5 & 6\\ \hline 
 				z & 1 & 1 & 2 & 3 & 4 & 5 & 6\\ \hline
 				z & 2 & 2 & 3 & 4 & 5 & 5 & 6\\ \hline
 				y & 3 & 3 & 4 & 4 & 5 & 6 & 7\\ \hline
@@ -149,10 +145,10 @@
 			While j > 0,
 			    Prepend B's jth character to the result.
 			    Set j := j-1.
-			\end{verbatim}\\
+			\end{verbatim}
 													\begin{figure}[h]
 											\centering
-												\includegraphics[width=200]{dynamic4c.png}
+												\includegraphics[width=200px]{dynamic4c.png}
 											  \caption{Backtracing.}
 										\end{figure}
 		\end{enumerate}
