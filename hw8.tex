@@ -10,7 +10,7 @@
 	9.20.2011
 	\end{flushright}
 	\noindent
-	5. The input to this problem is a pair of strings $A = a_1 . . . a_m$ and $B = b_1 . . . b_n$. The goal is to convert
+	5. The input to this problem is a pair of strings $A = a_1 \ldots a_m$ and $B = b_1 \ldots b_n$. The goal is to convert
 	$A$ into $B$ as cheaply as possible. The rules are as follows. For a cost of 3 you can delete any letter.
 	For a cost of 4 you can insert a letter in any position. For a cost of 5 you can replace any letter by
 	any other letter. For example, you can convert $A = abcabc$ to $B = abacab$ via the following sequence:
@@ -20,6 +20,8 @@
 	not the cheapest possible conversion.\\
 	\\
 	% answer here
+	\newpage
+	\noident
 	6. Find the optimal binary search tree for keys $K_1 < K_2 < K_3 < K_4 < K_5$ where the access probabilities/weights 
 	are .5, .05, .1, .2, .25 respectively using the algorithm discussed in class and in the notes.
 	Construct one table showing the optimal expected access time for all subtrees considered in the algorithm, 
@@ -54,4 +56,5 @@
 	Beginning at point (1,5) in the table, where l=1 and r=5, in the roots table we 
 	determine the root to be $k_5$, where $k=5$, the left child is recursively defined 
 	by repeating this procedure at (l, k-1) and the right child by (k+1, r). Using this
-	method we get the following tree:  
+	method we get the following tree:
+	\end{document}
