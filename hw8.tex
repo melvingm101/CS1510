@@ -2,6 +2,7 @@
 \usepackage{fullpage}
 \usepackage{graphicx}
 \usepackage{amssymb}
+\usepackage{qtree}
 \newcommand{\tab}{\hspace*{2em}}
 \begin{document}
 	\begin{flushright}
@@ -56,5 +57,22 @@
 	Beginning at point (1,5) in the table, where l=1 and r=5, in the roots table we 
 	determine the root to be $k_5$, where $k=5$, the left child is recursively defined 
 	by repeating this procedure at (l, k-1) and the right child by (k+1, r). Using this
-	method we get the following tree:
+	method we get the following tree:\\
+	\Tree
+	[.tree(1,5)\\k_5
+		[.tree(1,4)\\k_3
+			[.tree(1,2)\\k_2
+				[.tree(1,1)\\k_1
+					tree(0,1)\\NULL
+					tree(2,1)\\NULL
+				]
+				tree(3,2)\\NULL
+			]
+			[.tree(4,4)\\k_4
+				tree(4,3)\\NULL
+				tree(5,4)\\NULL
+			]
+		]
+		tree(6,5)\\NULL
+	]
 	\end{document}
