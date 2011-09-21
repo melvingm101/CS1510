@@ -19,10 +19,54 @@
 	at cost of 3 can be converted to $abac$, which at cost of 4 can be converted to $abacb$, which at cost of 4
 	can be converted to $abacab$. Thus the total cost for this conversion would be 19. This is almost surely
 	not the cheapest possible conversion.\\
-	\\
 	% answer here
+	\\
+	The following is a modified Levenshtein distance algorithm that takes into account the different weights
+	of each of the operations. As such when the initalization takes place the value for comparing against the 
+	empty string needs to be multiplied by 4 to take into account all of the insert operations, or 3 to take into account deletes. 
+	\begin{verbatim}
+	  cost[][]
+	  
+	  for i = 0 to len(A): cost[i,0] = i*4
+	  for i = 0 to len(B): cost[0,i] = i*3
+	  
+	  for i = 1 to len(A):
+	    for j = 1 to len(B):
+	      if A[i] = B[j]:
+	        cost[i,j] = cost[i-1,j-1]
+	      else:
+	        cost[i,j] = min( cost[i-1,j-1] + 5  # sub
+	                         cost[i-1, j]  + 3  # del
+	                         cost[i, j-1]  + 4  # ins 
+	                       )
+	                         
+	  return cost[len(A), len(B)]
+	\end{verbatim}
+	\\
+	Using the above we determine that the minimal cost for converting $A = abcabc$ to $B = abacab$ is 7, the deletion
+	of the final ``C" and insertion of ``A" after position 2. We build the following table:\\
+	\begin{center}
+		$\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline
+		& \epsilon & a  & b & c & a & b & c\\ \hline
+		\epsilon & 0 & 4 & 8 & 12 &  16 & 20 & 24\\ \hline
+		a & 3 & 0 & 4 & 8 & 12 & 16 & 20 \\ \hline
+		b & 6 & 3 & 0 & 4 & 8 & 12 & 15\\ \hline
+		a & 9 & 6 & 3 & 5 & 4 & 13 & 17\\ \hline
+		c & 12 & 9 & 6 & 3 & 7 & 9 & 13\\ \hline
+		a & 15 & 12 & 9 & 6 & 3 & 7 & 11\\ \hline
+		b & 18 & 15 & 12 & 9 & 11 & 3 & 7\\ \hline	
+	\end{tabular}
+	$\\
+	\end{center}
+	\\
+	To trackback, start at the $i=len(A), j=len(B)$ position in the table. Procede to the minimum of $[i-1,j-1], [i-1,j], [i,j-1]$,
+	if the minimum is to the left there is a delete operation at position $i$. If the minimum is above there is a insertion operation
+	at position $i$. If the minimum is the diagonal (and not equal to $i,j$'s value) there was a subsitution at position $i$. Otherwise, no operation
+	was performed at this position in the string.
+	
 	\newpage
-	\noident
+	\noindent
 	6. Find the optimal binary search tree for keys $K_1 < K_2 < K_3 < K_4 < K_5$ where the access probabilities/weights 
 	are .5, .05, .1, .2, .25 respectively using the algorithm discussed in class and in the notes.
 	Construct one table showing the optimal expected access time for all subtrees considered in the algorithm, 
