@@ -13,8 +13,8 @@
 	9.25.2011
 	\end{flushright}
 	\noindent
-	8.  The input to this problem is a sequence S of integers (not necessarily positive). The problem is to find
-			the consecutive subsequence of S with maximum sum. ``Consecutive" means that you are not allowed
+	8.  The input to this problem is a sequence $S$ of integers (not necessarily positive). The problem is to find
+			the consecutive subsequence of $S$ with maximum sum. ``Consecutive" means that you are not allowed
 			to skip numbers. For example if the input was
 			
 			\[ 12, -14, 1, 23, -6, 22, -34, 13 \]
@@ -23,7 +23,53 @@
 			the output would be 1, 23, -6, 22. Give a linear time algorithm for this problem.\\
 			\\
 			% answer here
-	9.	The input to this problem is a tree $T$ with integer weights on the edges. The weights may be negative,
+			An inefficient iterative and na\"{i}ve algorithm is as follows: Blindly iterating over all possible sets and calculating their sums and recording the maximum summation\\
+			\\
+			gmax = $-\infty$, gstart, glength\\
+			For start in [0,n]:\\
+			\tab For length in [1, n-start]:\\
+			\tabb sum = $\sum_{i=start}^{start+length} S[i]$\\
+			\tabb if $sum > gmax:$\\
+			\tabbb gmax = sum\\
+			\tabbb gstart = start\\
+			\tabbb glength = length\\
+			\\
+			For this we can derive a more elegant, informed, and efficiencisized solution by keeping track of a maximum sum for a start point and iterating over all of the possible starting indices\\
+			\\
+			For start in [0,n]:\\
+			\tab startmax = $-\infty$, startmaxlength\\
+			\tab sum = S[start]\\
+			\tab For length in [1,n-start]:\\
+			\tabb If sum + S[start+length] $>$ startmax:\\
+			\tabbb sum = sum + s[start+length]\\
+			\tabbb startmaxlength = length\\
+			\tabbb startmax = sum\\
+			\tabb Else:\\
+			\tabbb sum = S[start+length]\\
+			\tab If startmax $>$ gmax:\\
+			\tabb gmax = startmax\\
+			\tabb gstart = start\\
+			\tabb glength = startmaxlength\\
+			\\
+			\noindent
+			From this we can derive the following, where we keep the maximum sum for the start point globally and update it when looking at what the value of adding the next number in the list will be:\\ 
+			\\
+			\newpage
+			\noindent
+			gmax = S[0], gstartmax = S[0], gend = 0\\
+			For i in [1,n]:\\
+			\tab if $gstartmax + S[i] > S[i]$:\\
+			\tabb gstartmax = gstartmax + S[i]\\
+			\tab else: gstartmax = S[i]\\
+			\\
+			\tab if $gstartmax > gmax$:\\
+			\tabb gmax = gstartmax\\
+			\tabb gend = i  
+			
+			
+			\newpage
+			\noindent
+			9.	The input to this problem is a tree $T$ with integer weights on the edges. The weights may be negative,
 			zero, or positive.  Give a linear time algorithm to find the shortest simple path in $T$.  The length of a
 			path is the sum of the weights of the edges in the path. A path is simple if no vertex is repeated. Note
 			that the endpoints of the path are unconstrained.\\
