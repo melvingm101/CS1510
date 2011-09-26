@@ -74,5 +74,19 @@
 			path is the sum of the weights of the edges in the path. A path is simple if no vertex is repeated. Note
 			that the endpoints of the path are unconstrained.\\
 			\\
+			\\
+			Here is an incorrect inefficient recursive algorithm.\\
+			\textbf{minpath}($node$):\\
+			\tab $min = \infty$\\
+			\tab For all $child$ of $node$:\\
+			\tabb $childmin$ = weight($node$,$child$) + \textbf{minpath}($child$)\\
+			\tabb if $childmin < $ weight($node$,$child$):\\
+			\tabbb $min = childmin$\\
+			\tabb else\\
+			\tabbb $min = $weight($node$,$child$)\\
+			\tab return $min$\\
+			\\
+			This algorithm is incorrect because it does not consider paths between
+			children of the same node.
 			% answer here
 \end{document}
