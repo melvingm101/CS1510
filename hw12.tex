@@ -1,0 +1,46 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{qtree}
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\tabb}{\hspace*{4em}}
+\newcommand{\tabbb}{\hspace*{6em}}
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Dynamic Programming Problems\\
+	9.28.2011
+	\end{flushright}
+	\noindent
+	12. 	Consider the code for the Knapsack program given in the class notes.
+	\begin{enumerate}
+	\item[(a)]	Explain how one can actually find the highest valued subset of objects, subject to the weight
+							constraint, from the Value table computed by this code.\\
+							\\
+							From the table you can find the highest valued subset of objects by examining the table starting
+							at $Value[k,S]$, where $k$ = number of objects considered and $S$ = the maximum weight. If
+							$Value[k-1,S] = Value[k,S]$, then do not add object $k$ to the solution set and let $k = k - 1$. 
+							Otherwise, add object $k$ to the solution set and let $S=S-w_k$, where $w_k = $
+							the weight of object $k$, then let $k=k-1$. Repeat until $k=0$.
+	\item[(b)]	Explain how to solve the Knapsack problem using only $O(L)$ memory/space and $O(nL)$ time. You
+							need only find the value and weight of the optimal solution, not the actual collection of objects.\\
+							\\
+							In the iterative solution when building the table, the writes for column $k$ depend only on the values
+							stored in column $k-1$. Therefore, our array only needs to have two columns. At each iteration (when $k$ increases),
+							the columns alternate between being the read column and the write column. This eliminates copy time, although
+							this isn't necessary. The alternating of read-column and write-column is a method taken from the idea of
+							double-buffering.
+	\end{enumerate}
+	
+	\noindent
+	14.	Give an algorithm for the following problem whose running time is polynomial in $n + L$.\\
+			Input: positive integers $v_1, \ldots, v_n$, with $L = \sum_{i=1}^n v_i$.\\
+			Output: A solution (if one exists) to $\sum_{i=1}^n (-1)^{x_i} v_i = 0$ where each $x_i$ is either 0 or 1.\\
+			\\
+	\noident
+	15.	Give an algorithm for the following problem whose running time is polynomial in $n + log L$:\\
+			Input: positive integers $v_1, \ldots , v_n$ and $L$.\\
+			Output:  A solution (if one exists) to $(\sum_{i=1}^n x_i v_i)$ mod $n = L$ mod $n$ where each $x_i$ is either 0 or 1.\\
+			Here $x$ mod $y$ means the remainder when $x$ is divided by $y$.
+\end{document}
