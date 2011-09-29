@@ -42,5 +42,7 @@
 	15.	Give an algorithm for the following problem whose running time is polynomial in $n + log L$:\\
 			Input: positive integers $v_1, \ldots , v_n$ and $L$.\\
 			Output:  A solution (if one exists) to $(\sum_{i=1}^n x_i v_i)$ mod $n = L$ mod $n$ where each $x_i$ is either 0 or 1.\\
-			Here $x$ mod $y$ means the remainder when $x$ is divided by $y$.
+			Here $x$ mod $y$ means the remainder when $x$ is divided by $y$.\\
+	\\
+	Each level of the tree has width $n$ because we prune duplicates, and possible values are $[0,n-1]$. BAM.\\
 \end{document}
