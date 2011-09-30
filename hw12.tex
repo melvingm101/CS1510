@@ -6,6 +6,7 @@
 \newcommand{\tab}{\hspace*{2em}}
 \newcommand{\tabb}{\hspace*{4em}}
 \newcommand{\tabbb}{\hspace*{6em}}
+\setlength{\parindent}{0in} 
 \begin{document}
 	\begin{flushright}
 	Lindsey Bieda and Joe Frambach\\
@@ -38,11 +39,35 @@
 			Input: positive integers $v_1, \ldots, v_n$, with $L = \sum_{i=1}^n v_i$.\\
 			Output: A solution (if one exists) to $\sum_{i=1}^n (-1)^{x_i} v_i = 0$ where each $x_i$ is either 0 or 1.\\
 			\\
-	\noident
+			\\
+			Pruning rules:\\
+			1) $-v_{h+1} - \ldots - v_n < current~sum < v_{h+1} + \ldots + v_n$, that is if the current sum is too high
+			or too low to be negated by all remaining values, prune that sum.\\
+			2) If there are duplicate values at the same level of the tree prune all but one.\\
+			\\
+			
+			Begin with $v_1$ at the root of tree, because of the symmetric nature.\\
+			A[1,$v_1$] = 0\\
+			
+		 	For h = 2 to n:\\
+			\tab For $\ell$ = -L to L:\\
+			\tabb A[h,\ell-$v_h$] = 1\\
+			\tabb A[h,\ell+$v_h$] = 0\\
+			\tabb L = L - $v_h$\\
+			
+			If there is a solution A[n,0] will be defined.\\
+			Traceback: Begin at $A[\ell=n, s=0]$.\\
+			Repeat:\\
+				\tab If $A[\ell,s]$ = 1, then add $x_{\ell} = 1$ to the solution set and go to $A[\ell-1,s+v_{\ell}]$\\
+				\tab Else, add $x_{\ell} = 0$ to the solution set and go to $A[\ell-1,s-v_{\ell}]$\\
+			At the end of the last iteration, the current cell will be $A[1,v_1]$.\\
+			\\ 
+	\noindent
 	15.	Give an algorithm for the following problem whose running time is polynomial in $n + log L$:\\
 			Input: positive integers $v_1, \ldots , v_n$ and $L$.\\
 			Output:  A solution (if one exists) to $(\sum_{i=1}^n x_i v_i)$ mod $n = L$ mod $n$ where each $x_i$ is either 0 or 1.\\
 			Here $x$ mod $y$ means the remainder when $x$ is divided by $y$.\\
 	\\
+	
 	Each level of the tree has width $n$ because we prune duplicates, and possible values are $[0,n-1]$. BAM.\\
 \end{document}
