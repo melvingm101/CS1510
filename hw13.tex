@@ -62,7 +62,11 @@
 							
 							
 		\item[(b)]	Explain how to use the algorithm from the previous subproblem to get a divide and conquer
-								algorithm for finding the items in the Knapsack problem a and uses space $O(L)$ and time $O(nL)$. 
+					algorithm for finding the items in the Knapsack problem a and uses space $O(L)$ and time $O(nL)$. \\
+					We can partition the space for the knapsack problem by considering each of the items alone, and then 
+					merging those solutions together in pairs and then continue merging until we have one full set. The 
+					process of combining the solution sets uses the process mentioned above as determining which items
+					make up the solution set. 
 	\end{enumerate}
 	\newpage
 	\noindent
@@ -74,34 +78,16 @@
 			Pruning Rules:\\
 			1) At each level, there may be no more than $W$ configurations. Ignore nodes where the cumulative sum is greater than $W$.\\
 			2) At each level, multiple children are created. Only create $W/w_k$ children, since more would have a weight greater than $W$.\\
-			3) Prune duplicate nodes at each level with the same weight.\\
+			3) If $\exists$ two or mode nodes on the same level with the same weight, prune all but the one with the most value.\\
 			\\
-			Begin with root node $A[k=0, S=0]$, where k is the \textit{level} of the tree, for $0$ to $n$, and $S$ is the cumulative weight, for $0$ to $W$.\\
+			Begin with root node $A[k=0, S=0, x=0]$, where k is the \textit{level} of the tree, for $0$ to $n$, and $S$ is the cumulative weight, for $0$ to $W$, and x
+			is the multiplier.\\
 			For $k~=~0~to~n-1$:\\
 			\tab For $S~=~0~to~W$:\\
 			\tabb For $x~=~0~to~W/w_k$:\\
-			\tabbb $A[k+1,~A[k,S]~+~x\cdot w_k]=x$.\\
+			\tabbb If $A[k,~ A[k,S,x], x] + v_k \cdot x  > \forall V \in A[k,~ A[k,S,x]]:$\\ 
+			\tabbbb $A[k+1,~A[k,S,x]~+~x\cdot w_k, x]= A[k,~ A[k,S,x], x] + v_k \cdot x$.\\
 			\newpage
-			\begin{sideways}
-			\small
-			\Tree[.\[\emptyset\]
-				[.\[[1,0]\]=0
-					\[[2,0]\]=0
-					\[[2,$w_2$]\]=1
-					\[\ldots\]
-					\[[2,$n\cdot w_n$]\]=n
-				] !\qsetw{4cm}
-				\[[1,$w_1$]\]=1
-				[.\[[1,2$w_1$]\]=2
-					\[[2,2$w_1$]\]=0
-					\[[2,2$w_1+$w_2$]\]=1
-					\[\ldots\]
-					\[[2,2$w_1+n\cdot w_n$]\]=n
-				] !\qsetw{4cm}
-				\[\ldots\] !\qsetw{4cm}
-				\[[1,$n\cdot w_1$]\]=n
-			]
-			\end{sideways}
 	\newpage
 	\noindent
 	17. Give an algorithm for the following problem whose running time is polynomial in $n + L$, where \\
