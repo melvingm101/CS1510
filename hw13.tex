@@ -3,15 +3,17 @@
 \usepackage{graphicx}
 \usepackage{amssymb}
 \usepackage{qtree}
+\usepackage{rotating}
 \newcommand{\tab}{\hspace*{2em}}
 \newcommand{\tabb}{\hspace*{4em}}
 \newcommand{\tabbb}{\hspace*{6em}}
+\newcommand{\tabbbb}{\hspace*{8em}}
 \setlength{\parindent}{0in} 
 \begin{document}
 	\begin{flushright}
 	Lindsey Bieda and Joe Frambach\\
 	Dynamic Programming Problems\\
-	9.28.2011
+	10.03.2011
 	\end{flushright}
 	13.	Our goal is now to consider the Knapsack problem, and develop a method for computing the actual
 			items to be taken in $O(L)$ space and $O(nL)$ time.
@@ -23,16 +25,85 @@
 								weight $v_a$ and $w_a$.  Secondly for this subset $S$ you want to compute the weight and value of the
 								items in $\{I_1, \ldots, I_{n/2}\}$ that are in $S$. Let use call this value and weight $v_b$ and $w_b$. So your output
 								will be two weights and two values. Give an algorithm for this problem that uses space $O(L)$ and
-								time $O(nL)$.
+								time $O(nL)$.\\
+							
+							\begin{quotation}
+								12. 	Consider the code for the Knapsack program given in the class notes.
+								\begin{enumerate}
+								\item[(a)]	Explain how one can actually find the highest valued subset of objects, subject to the weight
+														constraint, from the Value table computed by this code.\\
+														\\
+														From the table you can find the highest valued subset of objects by examining the table starting
+														at $Value[k,S]$, where $k$ = number of objects considered and $S$ = the maximum weight. If
+														$Value[k-1,S] = Value[k,S]$, then do not add object $k$ to the solution set and let $k = k - 1$. 
+														Otherwise, add object $k$ to the solution set and let $S=S-w_k$, where $w_k = $
+														the weight of object $k$, then let $k=k-1$. Repeat until $k=0$.
+								\item[(b)]	Explain how to solve the Knapsack problem using only $O(L)$ memory/space and $O(nL)$ time. You
+														need only find the value and weight of the optimal solution, not the actual collection of objects.\\
+														\\
+														In the iterative solution when building the table, the writes for column $k$ depend only on the values
+														stored in column $k-1$. Therefore, our array only needs to have two columns. At each iteration (when $k$ increases),
+														the columns alternate between being the read column and the write column. This eliminates copy time, although
+														this isn't necessary. The alternating of read-column and write-column is a method taken from the idea of
+														double-buffering.
+								\end{enumerate}			
+							\end{quotation}
+							
+							From 12b, we take the resulting array and then iterate as follows to determine the set of items:\\
+							$\ell$ = 0, $v_a$ = 0, $w_a$ = 0, $v_b$ = 0, $w_b$ = 0\\
+							\tab For i = 1 to L:\\
+							\tabb if $\exists~k$ = Array[i] - $\ell$:\\
+							\tabbb add item $k$ to the solution set $S$, and $\ell$ = Array[i]\\
+							\tabbb $v_a$ = $v_a$ + $v_k$\\ 
+							\tabbb $w_a$ = $w_a$ + $w_k$\\
+							\tabbb if $k \leq n/2$:\\
+							\tabbbb $v_b$ = $v_b$ + $v_k$\\ 
+							\tabbbb $w_b$ = $w_b$ + $w_k$\\
+							
+							
 		\item[(b)]	Explain how to use the algorithm from the previous subproblem to get a divide and conquer
 								algorithm for finding the items in the Knapsack problem a and uses space $O(L)$ and time $O(nL)$. 
 	\end{enumerate}
-	
-	16.	Give an algorithm for the following problem whose running time is polynomial in $n + W$:\\
+	\newpage
+	\noindent
+	16.	Give an algorithm for the following problem whose running time is polynomial in $n + W$:\\ 
 			Input: positive integers $w_1, \ldots, w_n$ , $v_1, \ldots, v_n$ and $W$.\\
-			Output:  The maximum possible value of $\sum_{i=1}^n x_i v_i$ subject to $\sum{i=1}^n x_i w_i \leq W$ and each $x_i$ is a
+			Output:  The maximum possible value of $\sum_{i=1}^n x_i v_i$ subject to $\sum_{i=1}^n x_i w_i \leq W$ and each $x_i$ is a
 			nonnegative integer.\\
-	
+			\\
+			Pruning Rules:\\
+			1) At each level, there may be no more than $W$ configurations. Ignore nodes where the cumulative sum is greater than $W$.\\
+			2) At each level, multiple children are created. Only create $W/w_k$ children, since more would have a weight greater than $W$.\\
+			3) Prune duplicate nodes at each level with the same weight.\\
+			\\
+			Begin with root node $A[k=0, S=0]$, where k is the \textit{level} of the tree, for $0$ to $n$, and $S$ is the cumulative weight, for $0$ to $W$.\\
+			For $k~=~0~to~n-1$:\\
+			\tab For $S~=~0~to~W$:\\
+			\tabb For $x~=~0~to~W/w_k$:\\
+			\tabbb $A[k+1,~A[k,S]~+~x\cdot w_k]=x$.\\
+			\newpage
+			\begin{sideways}
+			\small
+			\Tree[.\[\emptyset\]
+				[.\[[1,0]\]=0
+					\[[2,0]\]=0
+					\[[2,$w_2$]\]=1
+					\[\ldots\]
+					\[[2,$n\cdot w_n$]\]=n
+				] !\qsetw{4cm}
+				\[[1,$w_1$]\]=1
+				[.\[[1,2$w_1$]\]=2
+					\[[2,2$w_1$]\]=0
+					\[[2,2$w_1+$w_2$]\]=1
+					\[\ldots\]
+					\[[2,2$w_1+n\cdot w_n$]\]=n
+				] !\qsetw{4cm}
+				\[\ldots\] !\qsetw{4cm}
+				\[[1,$n\cdot w_1$]\]=n
+			]
+			\end{sideways}
+	\newpage
+	\noindent
 	17. Give an algorithm for the following problem whose running time is polynomial in $n + L$, where \\
 			$L =$ max $(\sum_{i=1}^n v_i^3, \prod_{i=1}^n v_i)$.\\
 			Input: positive integers $v_1, \ldots, v_n$\\
