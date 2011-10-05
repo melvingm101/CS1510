@@ -8,6 +8,8 @@
 \newcommand{\tabb}{\hspace*{4em}}
 \newcommand{\tabbb}{\hspace*{6em}}
 \newcommand{\tabbbb}{\hspace*{8em}}
+\newcommand{\tabbbbb}{\hspace*{10em}}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
 \setlength{\parindent}{0in} 
 \begin{document}
 	\begin{flushright}
@@ -22,11 +24,60 @@
 			number of emeralds in $Q$. Note that a partition means that every gem must be in exactly one of $P$ or
 			$Q$. You algorithm should run in time polynomial in $n + L$.\\
 			\\
+			\\
+			First, we must assert that a solution can exist. We split the input $I$ into two arrays, $R$ubies and $E$merils.\\
+			Assert that $\norm{R}~mod~2~==~0$ and $\norm{E}~mod~2~==~0$.\\
+			Assert that $L~mod~2~==~0$.\\
+			\\
+			The tree is constructed with nodes $[level,~\#rubies,~\#emeralds,~value]~=~boolean$, where the indexes show
+			the current state of partition $P$ or $Q$ after deciding on gem $level$. Which partition specifically
+			doesn't matter, since at the end they will be identical. $boolean$ would be used for a traceback
+			algorithm later, but here it only matters that the cell is defined or not defined.\\
+			\\
+			Pruning Rules:\\
+			Prune nodes with more than $\norm{R}/2$ rubies or more than $\norm{E}/2$ Emerils, or has a value greater than $L/2$.\\
+			\\
+			Initialization:\\
+			$P[0,0,0,0]=0$.\\
+			\\
+			Building the tree:\\
+			For g = 0 to $\norm{I}$:\\
+			\tab If $I_{g}$ is a ruby:\\
+			\tabb For r = 0 to $\norm{R}/2$:\\
+			\tabbb For e = 0 to $\norm{E}/2$:\\
+			\tabbbb For $\ell$ = 0 to $L/2$:\\
+			\tabbbbb $A[g+1,r,e,\ell] = 0$\\
+			\tabbbbb $A[g+1,r+1,e,\ell+I_{g}] = 1$\\
+			\tab Else ($I_{g}$ is an Emeril):\\
+			\tabb For r = 0 to $\norm{R}/2$:\\
+			\tabbb For e = 0 to $\norm{E}/2$:\\
+			\tabbbb For $\ell$ = 0 to $L/2$:\\
+			\tabbbbb $A[g+1,r,e,\ell] = 0$\\
+			\tabbbbb $A[g+1,r,e+1,\ell+I_{g}] = 1$\\
+			\\
+			If $A[\norm{I},\frac{\norm{R}}{2},\frac{\norm{E}}{2},\frac{L}{2}]$ is defined, then a solution exists. Bam.\\
+			\\
+			\newpage
+			\noindent
 	19.	The input to this problem consists of an ordered list of $n$ words. The length of the $i$th word is $w_i$, that
 			is the $i$th word takes up $w_i$ spaces.  (For simplicity assume that there are no spaces between words.)
 			The goal is to break this ordered list of words into lines, this is called a layout. Note that you can not
 			reorder the words.  The length of a line is the sum of the lengths of the words on that line. The ideal
 			line length is $L$. No line may be longer than $L$, although it may be shorter.  The penalty for having a
 			line of length $K$ is $L - K$. \textit{The total penalty is the} \textbf{maximum} \textit{of the line penalties}. The problem is to
-			find a layout that minimizes the total penalty. Give a polynomial time algorithm for this problem.
+			find a layout that minimizes the total penalty. Give a polynomial time algorithm for this problem.\\
+			\\
+			Pruning rules: 
+			1) Prune all nodes at the same level that have the same words on the last line except for the the one with the minimum total penalty.\\
+			\\
+			Initalization:\\
+			A[*,*] = INF\\
+			A[1, $w_1$] = 0\\
+			\\
+			For $i = 0$ to $n$:\\
+			\tab For $\ell = 0$ to $L$:\\
+			\tabb $A[i+1, w_{i+1}] = min(A[i+1, w_{i+1}], L - \ell)$\\
+			\tabb $A[i+1, \ell + w_{i+1}] = min(A[i+1, \ell + w_{i+1}], A[i,\ell])$\\
+			\\
+			The solution is at \[\min_{0 \leq \ell \leq L}(A[n,\ell] + L - \ell)\]
 \end{document}
