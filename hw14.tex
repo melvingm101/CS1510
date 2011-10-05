@@ -1,0 +1,32 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{qtree}
+\usepackage{rotating}
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\tabb}{\hspace*{4em}}
+\newcommand{\tabbb}{\hspace*{6em}}
+\newcommand{\tabbbb}{\hspace*{8em}}
+\setlength{\parindent}{0in} 
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Dynamic Programming Problems\\
+	10.05.2011
+	\end{flushright}
+	18.	The input to this problem is a set of $n$ gems. Each gem has a value in dollars and is either a ruby or
+			an emerald. Let the sum of the values of the gems be $L$. The problem is to determine if it is possible
+			to partition of the gems into two parts $P$ and $Q$, such that each part has the same value, the number
+			of rubies in $P$ is equal to the number of rubies in $Q$, and the number of emeralds in $P$ is equal to the
+			number of emeralds in $Q$. Note that a partition means that every gem must be in exactly one of $P$ or
+			$Q$. You algorithm should run in time polynomial in $n + L$.\\
+			\\
+	19.	The input to this problem consists of an ordered list of $n$ words. The length of the $i$th word is $w_i$, that
+			is the $i$th word takes up $w_i$ spaces.  (For simplicity assume that there are no spaces between words.)
+			The goal is to break this ordered list of words into lines, this is called a layout. Note that you can not
+			reorder the words.  The length of a line is the sum of the lengths of the words on that line. The ideal
+			line length is $L$. No line may be longer than $L$, although it may be shorter.  The penalty for having a
+			line of length $K$ is $L - K$. \textit{The total penalty is the} \textbf{maximum} \textit{of the line penalties}. The problem is to
+			find a layout that minimizes the total penalty. Give a polynomial time algorithm for this problem.
+\end{document}
