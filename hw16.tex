@@ -27,16 +27,27 @@
 		\item[(a)]	Give a recursive algorithm to solve this problem. Then explain how to turn this recursive algorithm
 					into a dynamic program.\\
 					\\
+					A function, Weighted Sub Sequence (WSS), is defined:\\
+					The recursive algorithm is called initally as wss($n$,$k$) with $T$, $P$, and $C$ being globally accessable.\\
+					The algorithm works by examining substrings of both of the given sequences and then determining where 
+					the values at a given position are equal and maximizes the values at these positions. 
+					\\
 					wss(i,j):\\
-					\tab if i = 0 or j = 0:\\
-					\tabb return 0\\
-					\tab if $T_i$ = $P_j$:\\	
-					\tabb return max($v_i$ + wss(i-1,j-1), wss(i-1,j))\\
+					\tab if i = 0 or j = 0: \emph{outside the bounds of either string}\\
+					\tabb return 0 \emph{no value here}\\
+					\tab if i < j: \emph{if the length of P is less than the length of T there is no solution}\\
+					\tabb return $- \infty$\\
+					\tab else if $T_i$ = $P_j$: \emph{The last characters are equal. Either use it or ignore and continue.}\\
+					\tabb return max($v_i$ + wss(i-1,j-1), wss(i-1,j)) \emph{check if there is a better location elsewhere in the string}\\
 					\tab else:\\
-					\tabb return wss(i-1,j)\\
-					
+					\tabb return wss(i-1,j) \emph{check the rest of the string}\\
+					\\
+					Given the above recursive definition we can draw a call tree and then determine what pruning rules
+					to apply. From there we map the tree to an array based on these pruning rules.\\
+					The pruning rules are based on $i$ and $j$ passed into the $WSS$ call, so the complexity
+					is polynomial in terms of $n$ and $k$.\\
 		\item[(b)]	Give a dynamic programming algorithm based on enumerating subsequences of $T$ and using the
-					pruning method. 
+					pruning method.\\
 		\item[(c)]	Give a dynamic programming algorithm based on enumerating subsequences of $P$ and using the
 					pruning method.
 	\end{enumerate}
