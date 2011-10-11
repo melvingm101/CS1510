@@ -25,10 +25,19 @@
 	the optimal solution is to pick the second $X$ in $T$ and the second $Y$ in $T$ for a cost of $7 + 1 = 8$.
 	\begin{enumerate}
 		\item[(a)]	Give a recursive algorithm to solve this problem. Then explain how to turn this recursive algorithm
-								into a dynamic program.
+					into a dynamic program.\\
+					\\
+					wss(i,j):\\
+					\tab if i = 0 or j = 0:\\
+					\tabb return 0\\
+					\tab if $T_i$ = $P_j$:\\	
+					\tabb return max($v_i$ + wss(i-1,j-1), wss(i-1,j))\\
+					\tab else:\\
+					\tabb return wss(i-1,j)\\
+					
 		\item[(b)]	Give a dynamic programming algorithm based on enumerating subsequences of $T$ and using the
-								pruning method. 
+					pruning method. 
 		\item[(c)]	Give a dynamic programming algorithm based on enumerating subsequences of $P$ and using the
-								pruning method.
+					pruning method.
 	\end{enumerate}
 \end{document}
