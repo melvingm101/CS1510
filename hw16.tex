@@ -48,7 +48,54 @@
 					is polynomial in terms of $n$ and $k$.\\
 		\item[(b)]	Give a dynamic programming algorithm based on enumerating subsequences of $T$ and using the
 					pruning method.\\
+					\\
+					Tree Defintion:\\
+					Every node in the tree is a different substring of $T$. Each of the levels of the tree are created
+					by either choosing to add the next character of the $T$ or not. We represent these states as 
+					[level,number of matching characters] in the array, with the total cost being stored at that location.
+					The tree is rooted at [0,0] representing the empty string with a total cost of 0.\\
+					The children of $A[x,y]$ will be $A[x+1,y]$ and $A[x+1,y+1]$ (if $T_{x+1} == P_{y+1}$).\\
+					\\
+					Pruning Rules (Ruling Prunes):
+					\begin{enumerate}
+						\item[(1)] For every node on the same level with the same number of matching characters, prune all
+						but the one with the maximum cost.
+						\item[(2)] At every level, $\ell$, if the next added character to the substring does not increase the 
+						amount of matching characters, prune that node.  
+					\end{enumerate}
+					Algorithm:\\
+					wss:\\
+					A[0 to n, 0 to k] = 0. \emph{Initialize costs to zero.}\\
+					A[0,0] = 0. \emph{T's empty substring matches zero characters of P with a cost of zero}\\
+					for $\ell$ = 0 to $n-1$: \emph{For each character in $T$}\\
+					\tab for $m$ = 0 to $k-1$: \emph{For each amount of matching, to $k-1$, don't go past the end of P}\\
+					\tabb $A[\ell+1,m]$ = max($A[\ell+1,m]$, $A[\ell,m]$)\\
+					\tabb if $T_{\ell+1} == P_{m+1}$ then\\
+					\tabbb $A[\ell+1,m+1]$ = max($A[\ell+1,m+1]$, $c_{\ell+1} + A[\ell,m])$)\\
+					The solution is given at $A[n,k]$.
 		\item[(c)]	Give a dynamic programming algorithm based on enumerating subsequences of $P$ and using the
-					pruning method.
+					pruning method.\\
+					\\
+					Tree Defintion:\\
+					Every node in the tree is a different substring of $T$. The nodes are represented as [level, last matching character index] 
+					in the array, with the total cost being stored at that location. At each level a different substring of $P$ is being considered.
+					With the level, $\ell$, representing the first $\ell$ characters of $P$. The tree is rooted at [0,0] representing the empty string.\\
+					\\
+					Pruning rules:
+					\begin{enumerate}
+						\item[(1)] At every level remove the generated substrings of $T$ that do not match the current considered substring of $P$ as defined 
+						above.
+						\item[(2)] At every level for nodes with the same last matching character index keep only the one with the maximum cost.
+					\end{enumerate}
+					Algorithm:\\
+					wss:\\
+					A[0 to k, 0 to n] = 0. \emph{Initalize costs to zero.}\\
+					A[0,0] = 0. \emph{The empty string does not match anyting and has a cost of zero.}\\
+					for $\ell$ = 0 to $k-1$ : \emph{For every level}\\
+					\tab for $i$ = 0 to $n$: \emph{For every character in $T$}\\
+					\tabb if $P_{\ell+1}$ == $T_{i}$:\\
+					\tabbb A[$\ell+1$, $i$] = max(A[$\ell+1$, $i$], $c_{i}$ + A[$\ell$, i])\\
+					\\
+					The solution is given at max(A[$k$, *]). 
 	\end{enumerate}
 \end{document}
