@@ -1,0 +1,58 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{qtree}
+\usepackage{rotating}
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\tabb}{\hspace*{4em}}
+\newcommand{\tabbb}{\hspace*{6em}}
+\newcommand{\tabbbb}{\hspace*{8em}}
+\newcommand{\tabbbbb}{\hspace*{10em}}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\setlength{\parindent}{0in} 
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Dynamic Programming Problems\\
+	10.12.2011
+	\end{flushright}
+	23.	Consider the problem where the input is a collection of $n$ train trips within Germany. For the $i$th trip
+		$T_i$ you are given the date $d_i$ of that trip, and the non-discounted fare $f_i$ for that trip. The Germani
+		railway system sells a Bahncard for $B$ Marks that entitles you to a 50\% fare reduction on all train travel
+		within Germany within $L$ days of purchase. The problem is to determine when to buy a Bahncard to
+		minimize the total cost of your travel.\\
+		\\
+		Tree definition:\\
+		The tree is defined as being rooted at a ``null" state where no decisions have been made. At each level, $\ell$,
+		we may or may not purchase a Bahncard on $d_\ell$. If a card is purchased then we add $B + \frac{f_\ell}{2}$ to
+		the node's value which is storing the total cost of all the trips. If the previously purchased Bahncard is still
+		in effect add $\frac{f_\ell}{2}$. Otherwise we add $f_\ell$. \\
+		\\ 
+		Pruning rules:
+		\begin{enumerate}
+			\item At each level $\ell$, there are multiple opportunities, $0$ to $\ell$, for the "last card purchased".
+			Trips and cards purchased after level $\ell$ are independent of the prior history, so we can prune all
+			but the history with minimum cost. More succinctly: at every level $\ell$, prune all but the cheapest
+			travel history with the same last-card-purchased.\\
+		\end{enumerate}
+		Algorithm:\\
+		$A[*,*] = \infty$\\
+		$A[0,0] = 0.$ \emph{Inititalize. $A[level,last-purchase]$ = $total-cost$.}\\
+		\\
+		For $\ell$ = 0 to $n-1$:\\
+		\tab For $p$ = 0 to $\ell$:\\
+		\tabb A[$\ell+1$, $\ell+1$] = min(A[$\ell+1$,$\ell+1$], A[$\ell$,p] + B +  $\frac{f_{\ell+1}}{2}$) \emph{Purchasing a new card and getting half off.}\\
+		\tabb If $\ell - p < \ell$: \emph{Previous card is still active get half off.}\\
+		\tabbb A[$\ell$+1, p] = min( A[$\ell$+1, p], A[$\ell$, p] + $\frac{f_{\ell+1}}{2}$ )\\
+		\tabb Else: \emph{Pay full price.}\\
+		\tabbb A[$\ell$+1, p] = min( A[$\ell$+1, p], A[$\ell$, p] + $f_{\ell+1}$ )\\
+		\\
+		The solution will be found at min(A[$n$,*])\\
+	\\
+	1.	A square matrix $M$ is lower triangular if each entry above the main diagonal is zero, that is, each entry
+		$M_{i,j}$ , with $i < j$, is equal to zero. Show that if there is an $O(n^2)$ time algorithm for multiplying two $n$
+		by $n$ lower triangular matrices then there is an $O(n^2)$ time algorithm for multiplying two arbitrary $n$
+		by $n$ matrices.
+
+\end{document}
