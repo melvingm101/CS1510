@@ -49,10 +49,70 @@
 		\tabbb A[$\ell$+1, p] = min( A[$\ell$+1, p], A[$\ell$, p] + $f_{\ell+1}$ )\\
 		\\
 		The solution will be found at min(A[$n$,*])\\
-	\\
+	\newpage
 	1.	A square matrix $M$ is lower triangular if each entry above the main diagonal is zero, that is, each entry
 		$M_{i,j}$ , with $i < j$, is equal to zero. Show that if there is an $O(n^2)$ time algorithm for multiplying two $n$
 		by $n$ lower triangular matrices then there is an $O(n^2)$ time algorithm for multiplying two arbitrary $n$
-		by $n$ matrices.
-
+		by $n$ matrices.\\
+		\\
+		Given two $nxn$ matrices, $M_1$ and $M_2$.\\
+		First, decompose $M_1$ into a sum of lower- and upper- diagonal matrices $L_1$ and $U_1$ such that $M_1 = L_1 + U_1$.\\
+		Decompose $M_2$ in the same manner, so that $M_2 = L_2 + U_2$.\\
+		\[
+		M_1M_2 = (L_1 + U_1)(L_2 + U_2)\\
+		= L_1L_2 + L_1U_2 + U_1L_2 + U_1U_2\\
+		\]
+		Each component can be calculated in O($n^2$) time, assuming there is an $O(n^2)$ time algorithm for multiplying
+		two $n$ by $n$ lower triangular matrices.\\
+		\begin{enumerate}
+		\item Calculating $L_1L_2$: These are already both lower-triangular.
+		\item Calculating $L_1U_2$:
+			\[
+			\left[
+				\begin{array}{c c}
+					0 & 0\\
+					0 & L_1
+				\end{array}
+			\right]
+			\left[
+				\begin{array}{c c}
+					0 & 0\\
+					U_2 & 0
+				\end{array}
+			\right]
+			=
+			\left[
+				\begin{array}{c c}
+					0 & 0\\
+					L_1U_2 & 0
+				\end{array}
+			\right]
+			\]
+		
+		\item Calculating $U_1L_2$:
+			\[
+			\left[
+				\begin{array}{c c}
+					0 & 0\\
+					U_1 & 0
+				\end{array}
+			\right]
+			\left[
+				\begin{array}{c c}
+					L_2 & 0\\
+					0 & 0
+				\end{array}
+			\right]
+			=
+			\left[
+				\begin{array}{c c}
+					0 & 0\\
+					U_1L_2 & 0
+				\end{array}
+			\right]
+			\]
+		\item Calculating $U_1U_2$:\\
+		$U_1U_2 = {(U_2^T U_1^T)}^T$ 
+		 
+		\end{enumerate}
 \end{document}
