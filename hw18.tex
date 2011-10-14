@@ -1,0 +1,43 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{qtree}
+\usepackage{rotating}
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\tabb}{\hspace*{4em}}
+\newcommand{\tabbb}{\hspace*{6em}}
+\newcommand{\tabbbb}{\hspace*{8em}}
+\newcommand{\tabbbbb}{\hspace*{10em}}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\setlength{\parindent}{0in} 
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Dynamic Programming Problems\\
+	10.14.2011
+	\end{flushright}
+	24.	Give a polynomial time algorithm for the following problem. The input consists of a sequence $R =
+		R_0 , \ldots , R_n$ of non-negative integers, and an integer $k$. The number $R_i$ represents the number of
+		users requesting some particular piece of information at time $i$ ( say from a www server. If the
+		server broadcasts this information at some time $t$, the the requests of all the users who requested the
+		information strictly before time t are satisfied. The server can broadcast this information at most
+		$k$ times. The goal is to pick the $k$ times to broadcast in order to minimize the total time (over all
+		requests) that requests/users have to wait in order to have their requests satisfied.\\
+		\\
+	25.	Assume that you are given a collection $B_1 , \ldots, B_n$ of boxes. You are told that the weight in kilograms
+		of each box is an integer between 1 and some constant $L$, inclusive. However, you do not know the
+		specific weight of any box, and you do not know the specific value of $L$. You are also given a pan
+		balance. A pan balance functions in the following manner. You can give the pan balance any two
+		disjoint sub-collections, say $S_1$ and $S_2$, of the boxes. Let $|S_1|$ and $|S_2|$ be the cumulative weight of the
+		boxes in $S_1$ and $S_2$, respectively. The pan balance then determines whether $|S_1| < |S_2|$, $|S_1| = |S_2|$,
+		or $|S_1| > |S_2|$. You have nothing else at your disposal other than these $n$ boxes and the pan balance.
+		The problem is to determine if one can partition the boxes into two disjoint sub-collections of equal
+		weight. Give an algorithm for this problem that makes at most $O(n^2 L)$ uses of the pan balance. For
+		partial credit, find an algorithm where the number of uses is polynomial in $n$ and $L$.\\
+		\\
+	2.	Show that if there is an $O(n^k )$, $k \geq 2$, time algorithm for inverting a nonsingular $n$ by $n$ matrix $C$
+		then there is an $O(n^k)$ time algorithm for multiply two arbitrary $n$ by $n$ matrices $A$ and $B$.	
+			
+
+\end{document}	
