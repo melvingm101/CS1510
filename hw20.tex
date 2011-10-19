@@ -31,22 +31,44 @@
 	Program Independent Set:\\
 	\tab read G\\
 	\tab Construct $G^\prime$ with the same vertices\\
-	\tab For each vertex pair: $(v_1, v_2) \ni v_1 \neq v_2$\\
+	\tab For each vertex pair: $(v_1, v_2) \ni v_1 \neq v_2$ \emph{This will take O($n^2$) time to check all pairs}\\
 	\tabb If there is no edge from $v_1$ to $v_2$ in $G$:\\
 	\tabbb Create edge from $v_1$ to $v_2$ in $G^\prime$\\
 	\tab output Clique($G^\prime$)\\
 	\\
+	Since the independent set wants only non-adjacent nodes we can generate edges between all non-adjacent nodes and then
+	find the clique of that in order to determine which ones are in the independent set, since the state of being a clique
+	is the inverse of being an independent set. \\
+	\\
 	Clique $\leq$ Vertex Cover:\\
 	\\
 	Program Clique:\\
-	\tab read G\\
-	
+	\tab read $G$\\
+	\tab Construct $G^\prime$ with the same vertices\\
+	\tab For each vertex pair: $(v_1, v_2) \ni v_1 \neq v_2$ \emph{This will take O($n^2$) time to check all pairs}\\
+	\tabb If there is no edge from $v_1$ to $v_2$ in $G$:\\
+	\tabbb Create edge from $v_1$ to $v_2$ in $G^\prime$\\
+	\tab $S$ = Set of vertices in $G$\\
+	\tab $S^{\prime}$ = VertexCover($G^{\prime}$)\\
+	\tab output $S$ - $S^{\prime}$\\
+	\\
+	Since the independent set of the inverse of $G$ will try to create the smallest independent set, we know that there must
+	not be an edge between the two edges in that set. We also know that there must then be edges between all of the other remaining
+	nodes and, therefore, there is a clique. 
+	\\
 	\\
 	Vertex Cover $\leq$ Independent Set\\
 	\\
 	Program Vertex Cover:\\
-	\tab read G\\
-		
+	\tab read $G$\\
+	\tab $S$ = IndependentSet($G$)\\
+	\tab output $G$ - $S$ \emph{This will take O(n) time to perform set subtraction}\\
+	\\
+	Since we have the largest Independent Set we know that the items in this set all must not be adjacent to 
+	each other, therefore, the smallest possible vertex cover must contain all vertices not in this set. If one
+	vertices in this set was in the smallest vertex cover then there would be two adjacent nodes in the vertex
+	cover and it would no longer be the smallest one.\\
+	\\
 	8. Show that the subset sum problem is self-reducible. The decision problem is to take a collection of
 		positive integers $x_1, \ldots, x_n$ and an integer $L$ and decide if there is a subset of the $x_i$’s that sum to
 		$L$. The optimization problem asks you to return the actual subset if it exits. So you must show that
@@ -62,7 +84,10 @@
 		\tabb foreach $x$ in $S$:\\
 		\tabbb if $S \backslash x$, $L$ decision is 1 then: \emph{if the subset sum is still possible without x remove it}\\
 		\tabbbb remove $x$ from $S$\\
-		\tab output $S$
+		\tab output $S$\\
+		\\
+		We examine if each of the numbers is required to sum to the desired $L$. If it is not required then we can remove it 
+		from the set.
 	\newpage
 	12. Consider the following 2Clique problem:\\
 		INPUT: A undirected graph $G$ and an integer $k$.\\
@@ -79,5 +104,7 @@
 		\tab G = H + H, where both copies of H are disjoint\\
 		\tab output 2-Clique($G$,$j$)\\
 		\\
-		Therefore, 2Clique is NPH.
+		Therefore, 2Clique is NPH.\\
+		\\
+		If there is a clique in $H$, there must be two cliques in a graph made up of two disjoint copies of $H$.
 \end{document}
