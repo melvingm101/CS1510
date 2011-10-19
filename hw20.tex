@@ -1,0 +1,83 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{qtree}
+\usepackage{rotating}
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\tabb}{\hspace*{4em}}
+\newcommand{\tabbb}{\hspace*{6em}}
+\newcommand{\tabbbb}{\hspace*{8em}}
+\newcommand{\tabbbbb}{\hspace*{10em}}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\setlength{\parindent}{0in} 
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Dynamic Programming Problems\\
+	10.19.2011
+	\end{flushright}
+	5. Show that if one of the following three problems has a polynomial time algorithm then they all do.
+	\begin{itemize}
+		\item 	The Independent Set Problem: The input is a graph $G$. The problem is to find the largest
+				independent set in $G$. In an independent set all vertices are mutually nonadjacent.
+		\item 	The Clique Problem: The input is a graph $G$. The problem is to find the largest clique in $G$. In
+				a clique all vertices are mutually adjacent.
+		\item	The Vertex Cover Problem: The input is a graph $G$. The problem is to find the smallest vertex
+				cover in $G$. A set $S$ is a vertex cover if each edge in $G$ is incident to a vertex in $S$.
+	\end{itemize}
+	Independent Set $\leq$ Clique\\
+	\\
+	Program Independent Set:\\
+	\tab read G\\
+	\tab Construct $G^\prime$ with the same vertices\\
+	\tab For each vertex pair: $(v_1, v_2) \ni v_1 \neq v_2$\\
+	\tabb If there is no edge from $v_1$ to $v_2$ in $G$:\\
+	\tabbb Create edge from $v_1$ to $v_2$ in $G^\prime$\\
+	\tab output Clique($G^\prime$)\\
+	\\
+	Clique $\leq$ Vertex Cover:\\
+	\\
+	Program Clique:\\
+	\tab read G\\
+	
+	\\
+	Vertex Cover $\leq$ Independent Set\\
+	\\
+	Program Vertex Cover:\\
+	\tab read G\\
+		
+	8. Show that the subset sum problem is self-reducible. The decision problem is to take a collection of
+		positive integers $x_1, \ldots, x_n$ and an integer $L$ and decide if there is a subset of the $x_i$’s that sum to
+		$L$. The optimization problem asks you to return the actual subset if it exits. So you must show that
+		if the decision problem has a polynomial time algorithm then the optimization problem also has a
+		polynomial time algorithm.\\
+		\\
+		subset sum optimization $\leq$ subset sum decision.\\
+		\\
+		program subset sub optimization:\\
+		\tab read $x_1, \ldots, x_n$, $L$\\
+		\tab If $x_1, \ldots, x_n$, $L$ decision is 1 then:\\
+		\tabb S = [$x_1, \ldots, x_n$]\\ 
+		\tabb foreach $x$ in $S$:\\
+		\tabbb if $S \backslash x$, $L$ decision is 1 then: \emph{if the subset sum is still possible without x remove it}\\
+		\tabbbb remove $x$ from $S$\\
+		\tab output $S$
+	\newpage
+	12. Consider the following 2Clique problem:\\
+		INPUT: A undirected graph $G$ and an integer $k$.\\
+		OUTPUT: 1 if $G$ has two vertex disjoint cliques of size $k$, and 0 otherwise.\\
+		Show that this problem is $NP$-hard. Use the fact that the clique problem in $NP$-complete. The input
+		to the clique problem is an undirected graph $H$ and an integer $j$. The output should be 1 if $H$ contains
+		a clique of size $j$ and 0 otherwise. Note that a clique is a mutually adjacent collection of vertices. Two
+		cliques are disjoint if they do not share any vertices in common.\\
+		\\
+		Clique $\leq$ 2-Clique\\
+		\\
+		Program Clique:\\
+		\tab read $H$, $j$\\
+		\tab G = H + H, where both copies of H are disjoint\\
+		\tab output 2-Clique($G$,$j$)\\
+		\\
+		Therefore, 2Clique is NPH.
+\end{document}
