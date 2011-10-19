@@ -33,8 +33,23 @@
 		The tree is rooted at $[0,0,0]$ reprensenting the state in which no pages have been broadcast yet and no
 		requests have come in yet.\\
 		\\
-		\textbf{Pruning Rules}:
-		\textbf{Algorithm}:
+		\textbf{Pruning Rules}:\\
+		\begin{enumerate}
+			\item	For all levels if any node has used more than $k$ broadcasts prune that node. 
+		\end{enumerate} 
+		\textbf{Algorithm}:\\
+		$A[*,*] = [\infty,\infty]$ \emph{Initialization}\\
+		$A[0,0] = [0,0]$\\
+		\\
+		$n$ = total number of requests\\
+		$n_p$ = total number of pages\\ 
+		For $t = 0$ to $n-1$:\\
+		\tab For $b$ = 0 to min($k$, $n-\ell$): \emph{Take care of the pruning rule}\\
+		\tabb \emph{$[W,w]$ = $A[t,b,p]$ for any locations where W or w are cited the values are from this location in the array}\\
+		\tabb A[$\ell+1$, $b$, 0] = $[W+w+\Sigma R_{t+1,*}, w+\Sigma R_{t+1,*}]$ \emph{case: do not broadcast anything}\\ 
+		\tabb For $p$ = 1 to $n_p$:\\
+		\tabbb A[$t+1$, $b+1$, $p$] = $[W+w\Sigma R_{t+1,*} - R_{t+1,p}, w+\Sigma R_{t+1,*} - R_{t+1,p}]$\\
+		\\
 		\newpage
 		3. Show that if there is an $O(n^k)$, $k \geq 1$, time algorithm for squaring a degree $n$ polynomial,
 		then there is an $O(n^k)$ time algorithm for multiplying two degree $n$ polynomials. Assume that the polynomials
@@ -71,21 +86,10 @@
 		\\
 		Program Sorting:\\
 		\tab Read $I$.\\
-		\tab Create $I\prime$ = $(i,i)$ for each element $i$ in list $I$. The mapping on a cartesian plane is linear.\\
-		\tab $O$ = Steiner($I\prime$).\\
+		\tab Create $I^\prime$ = $(i,i)$ for each element $i$ in list $I$. The mapping on a cartesian plane is linear.\\
+		\tab $O$ = Steiner($I^\prime$).\\
 		\tab The output of Steiner is a set of edges joining each point to the next closest one.\\
 		\tab In linear time, we can find the minimum element of $I$. Starting here, there is only one road
 			emerging from that city to the next highest input. From there, continue in linear time to the
 			highest element of $I$.
-		\newpage
-		Extra Credit\\
-		22. The input to this problem is $n$ points $x_1, \ldots, x_n$ on a line. A good path $P$ has the property that one
-		endpoint of $P$ is the origin and every $x_i$ is covered by $P$. Note that $P$ need not be simple, that is, it
-		can backtrack over territory that it has already covered. Assume a vehicle moves along this path from
-		the origin at unit speed. The response time $r_i$ for each $x_i$ is the time until the vehicle first reaches
-		$x_i$. The problem is to find the good path that minimizes $\sum_{i=1}^{n}\frac{r_1}{n}$, the average response time. For
-		example, if the points are $x_1 = 1$ $x_2 = 8$ and $x_3 = -2$ and the path visited the points in the order
-		$x_1, x_3, x_2$, the average response time for this path would be 1/3 + (1 + 3)/3 + (1 + 3 + 10)/3. Give a
-		polynomial time algorithm for this problem.
-
 \end{document}	
