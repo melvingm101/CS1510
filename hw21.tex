@@ -36,9 +36,8 @@
 		\\
 		KISOGRAPH $\leq$ ISOGRAPH\\
 		\\
-		\\
 		program KISOGRAPH:\\
-		\tab read $G,H,k$\\
+		\tab Read $G,H,k$.\\
 		\tab $g$ = \# vertices in $G$\\
 		\tab $h$ = \# vertices in $H$\\
 		\tab If $g \neq h$ return 0\\
@@ -48,31 +47,43 @@
 		\tabbb If edge (n,m) exists in G:\\
 		\tabbbb count = count + 1\\
 		\tabb if count $\neq$ $k$:\\
-		\tabbb return 0\\
+		\tabbb Return 0.\\
 		\tab For all vertices n = 1 to g:\\
 		\tabb count = 0\\
 		\tabb For all vertices m = 1 to g, m $\neq$ n:\\
 		\tabbb If edge (n,m) exists in H:\\
 		\tabbbb count = count + 1\\
 		\tabb if count $\neq$ $k$:\\
-		\tabbb return 0\\
-		\tab return ISOGRAPH(G,H)\\
+		\tabbb Return 0.\\
+		\tab Return ISOGRAPH(G,H).\\
 		\\
 		Just check the degree of the vertices in $G$ and $H$ and then if that is valid return the result of ISOGRAPH. The degree checking will
 		take $O(n^2)$ time.\\
 		\\
+		\\
 		ISOGRAPH $\leq$ ISODIGRAPH\\
 		\\
-		\\
 		program ISOGRAPH:\\
-		\tab read $G$, $H$\\
-		\tab create $G^\prime$ and $H^\prime$ by replacing every edge with two directed edges in both directions ($O(n^2)$)\\
-		\tab return ISODIGRAPH($G^\prime$, $H^\prime$)\\
+		\tab Read $G$, $H$\\
+		\tab Create $G^\prime$ and $H^\prime$ by replacing every edge with two directed edges in both directions ($O(n^2)$)\\
+		\tab Return ISODIGRAPH($G^\prime$, $H^\prime$).\\
 		\\
-		Clearly, since the new graphs generated from the input contain every edge going in opposite directions they are equivalent
+		Since the new graphs generated from the input contain every edge going in opposite directions they are equivalent
 		to the undirected graphs, since now the direction of the edge does not matter.\\
 		\\
-		
+		\\
+		ISODIGRAPH $\leq$ ISOGRAPH\\
+		\\
+		Read $G$, $H$\\
+		Replace every directed edge with three additional vertices, forming a directional ``gate" using undirected edges, as in the following figure.\\
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=300px]{21digraph.png}
+		\end{figure}
+		This is an O($n^2$) operation for $n$ the number of vertices.\\
+		Return ISOGRAPH($G$,$H$).\\
+		\\
+		\newpage
 		9. The input to the Hamiltonian Cycle Problem is an undirected graph $G$. The problem is to find a
 		Hamiltonian cycle, if one exists. A Hamiltonian cycle is a simple cycle that spans $G$. Show that the
 		Hamiltonian cycle problem is self reducible. That it, show that if there is a polynomial time algorithm
@@ -91,7 +102,7 @@
 		\tabbbb $G = G^\prime$\\
 		\tab output $G$
 		\\
-		\\
+		\newpage
 		13. Show that the following problem is $NP$-hard:\\
 		INPUT: A graph $G$. Let $n$ be the number of vertices in $G$.\\
 		OUTPUT: 1 if $G$ contains a simple cycle with $\sqrt{n}$ edges, and 0 otherwise.\\
