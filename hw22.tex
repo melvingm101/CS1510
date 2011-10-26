@@ -1,0 +1,45 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{qtree}
+\usepackage{rotating}
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\tabb}{\hspace*{4em}}
+\newcommand{\tabbb}{\hspace*{6em}}
+\newcommand{\tabbbb}{\hspace*{8em}}
+\newcommand{\tabbbbb}{\hspace*{10em}}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\setlength{\parindent}{0in} 
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Dynamic Programming Problems\\
+	10.26.2011
+	\end{flushright}
+	6.  Show that if one of the following three problems has a polynomial time algorithm then they all do.
+	\begin{itemize}
+		\item The problem is to determine whether a Boolean Circuit (with gates NOT, binary AND, and
+					binary OR) has some input that causes all of the output lines to be 1.  Assume that the fan-out
+					(the number of gates that the output of a single gate can be fed into) of the gates in a circuit may
+					be arbitrary.
+		\item The problem is to determine whether a Boolean Circuit (with gates NOT, binary AND, and
+					binary OR), and fan-out at most 2, has some input that causes all of the output lines to be 1.
+		\item The problem is to determine whether a planar Boolean Circuit (with gates NOT, binary AND,
+					and binary OR) has some input that causes all of the output lines to be 1. A circuit is planar if
+					it can be laid on on the 2D plane so that no pair of lines cross (if you like, you can assume that
+					the layout is part of the input).
+	\end{itemize}
+	10.		Show that the clique problem is self-reducible.  The decision problem is to take a graph $G$ and an
+				integer $k$ and decide if $G$ has a clique of size $k$ or not. The optimization problem takes a graph $G$, and
+				returns a largest clique in $G$.  So you must show that if the decision problem has a polynomial time
+				algorithm then the optimization problem also has a polynomial time algorithm. Recall that a clique is
+				a collection of mutually adjacent vertices.
+	\\
+	\\
+	15.	Consider the following variant of the MST problem. The input consists of an undirected graph $G$ and
+			an integer $k$. The problem is to find a spanning tree $T$ of $G$ such that the degree of each node in $T$ is
+			at most $k$, or report that no such tree exists. Show by reduction that if this problem has a polynomial
+			time algorithm then the Hamiltonian path problem has a polynomial time algorithm. The Hamiltonian
+			path problem asks you to determine whether a graph has a simple path that spans the vertices.
+\end{document}
