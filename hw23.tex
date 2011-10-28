@@ -22,15 +22,47 @@ an integer $k$ and decide if $G$ has a vertex cover of size $k$ or not.  The opt
 graph $G$, and returns a smallest vertex cover in $G$.  So you must show that if the decision problem
 has a polynomial time algorithm then the optimization problem also has a polynomial time algorithm.
 Recall that a vertex cover is a collection $S$ of vertices with the property that every edge is incident to
-a vertex in $S$.
+a vertex in $S$.\\
     \\
+	\textbf{VERTEXCOVER-OPT} $\leq$ \textbf{VERTEXCOVER-DEC}\\
+	\\
+	Program VERTEXCOVER-OPT:\\
+	\tab Read graph $G$, integer $k$.\\
+	\tab \emph{First, find the smallest size of the smallest vertex cover.}\\
+	\tab For $k$ = 1 to $n$:\\
+	\tabb If VERTEXCOVER-DEC($G$,$k$) returns true:\\
+	\tabbb size $s$ = $k$.\\
+	\tabbb End for-loop.\\
+	\tab \emph{Next, find the actual cover by removing the vertices NOT in the cover}\\
+	\tab For each vertex $v$ in $G$:\\
+	\tab  $G^\prime$ = $G$ - $v$\\
+	\tabb If VERTEXCOVER-DEC($G^\prime$, $s$) returns true:\\
+	\tabbb $G$ = $G^\prime$.\\
+	\tab \emph{G is the graph containing only the smallest cover.}\\
+	\tab Return $G$.\\
     \\
+	\newpage
 	14.  Consider the problem where the input is a collection of linear inequalities.  For example, the input
-might look like $3x-2y = 3$ and $2x-3x = 9$. The problem is to determine if there is an integer solution
-that simultaneously satisfies all the inequalities. Show that this problem is NP-hard using the fact that
+might look like $3x-2y \leq 3$ and $2x-3y \geq 9$. The problem is to determine if there is an integer solution
+that simultaneously satisfies all the inequalities. Show that this problem is  NP-hard using the fact that
 it is NP-hard to determine if a Boolean formula in conjunctive normal form is satisfiable.
 	\\
 	\\
+	\textbf{CNF-SAT} $\leq$ \textbf{LINEAR-INEQ}\\
+	\\
+	Program CNF-SAT:\\
+	\tab Read formula $F$\\
+	\tab $F^\prime$ = ConstructEquation($F$)\\ 
+	\tab Output	LINEAR-INEQ($F^\prime$)\\
+	\\
+	ConstructEquation($F$):\\
+	Separate the CNF formula by the conjuncts to create $n$ separate statements.\\
+	For each of these $n$ statements constuct one side of the inequality by 
+	summing each of the literals (now variables) and multiplying those variables by
+	-1 that are the negated literals. Make this sum $\leq -1*(the~number~of~literals) + 1$.\\
+	\\
+	Ex: $x \vee y \vee \neg z$ becomes $x + y -z \leq -2$
+		
 	16.  The input to the three coloring problem is a graph $G$, and the problem is to decide whether the vertices
 of $G$ can be colored with three colors such that no pair of adjacent vertices are colored the same color.
 The input to the four coloring problem is a graph $G$, and the problem is to decide whether the vertices
