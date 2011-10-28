@@ -86,4 +86,12 @@ three coloring problem.\\
 	\\
 	\textbf{3-Coloring} $\leq$ \textbf{4-Coloring}\\
 	\\
+	Program 3-Coloring:\\
+	\tab Read $G$\\
+	\tab $G^\prime$ = G + node \emph{Where the added node connects to all other nodes in the graph}\\
+	\tab Output 4-Coloring($G^\prime$)\\
+	\\
+	Since the added node connects to all other nodes in the graph, it forces that additional color to be
+	used. The only way the graph could be 4 colorable is if it was 3 colorable, otherwise, this added node
+	is the same color as one of the nodes it is connected it.
 \end{document}
