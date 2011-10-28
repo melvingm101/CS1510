@@ -58,15 +58,32 @@ it is NP-hard to determine if a Boolean formula in conjunctive normal form is sa
 	ConstructEquation($F$):\\
 	Separate the CNF formula by the conjuncts to create $n$ separate statements.\\
 	For each of these $n$ statements constuct one side of the inequality by 
-	summing each of the literals (now variables) and multiplying those variables by
-	-1 that are the negated literals. Make this sum $\leq -1*(the~number~of~literals) + 1$.\\
+	summing each of the positive literals (now variables) and for the negated literals
+	make them (1 - $literal$). 
+	Make this sum $\geq 1$. This is done to enforce that at least one of the literals
+	must be true in order to satisfy this part of the formula.\\
 	\\
-	Ex: $x \vee y \vee \neg z$ becomes $x + y -z \leq -2$
-		
+	For each of the literals add the following inequality $0 \leq literal \leq 1$. The
+	purpose of this is to ensure that each literal can only have a value of 0 or 1 relating
+	to the possibility of it bring true or false in the formula.  
+	\\
+	Ex: $x \vee y \vee \neg z$ becomes:\\ 
+	$x + y + (1 - z) \geq 1$ and\\
+	$0 \leq x \leq 1$,\\
+	$0 \leq y \leq 1$,\\
+	$0 \leq z \leq 1$\\
+	\\
+	The fact that the formula is satifiable if and only if the linear inequality has a solution that satisfies all
+	inequalities is obvious from the above construction.\\
+	\\
+	\newpage		
 	16.  The input to the three coloring problem is a graph $G$, and the problem is to decide whether the vertices
 of $G$ can be colored with three colors such that no pair of adjacent vertices are colored the same color.
 The input to the four coloring problem is a graph $G$, and the problem is to decide whether the vertices
 of $G$ can be colored with four colors such that no pair of adjacent vertices are colored the same color.
 Show by reduction that if the four coloring problem has a polynomial time algorithm then so does the
-three coloring problem. 
+three coloring problem.\\
+	\\
+	\textbf{3-Coloring} $\leq$ \textbf{4-Coloring}\\
+	\\
 \end{document}
