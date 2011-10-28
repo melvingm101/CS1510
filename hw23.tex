@@ -1,0 +1,40 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{qtree}
+\usepackage{rotating}
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\tabb}{\hspace*{4em}}
+\newcommand{\tabbb}{\hspace*{6em}}
+\newcommand{\tabbbb}{\hspace*{8em}}
+\newcommand{\tabbbbb}{\hspace*{10em}}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\setlength{\parindent}{0in} 
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Dynamic Programming Problems\\
+	10.28.2011
+	\end{flushright}
+	11.  Show that the Vertex Cover Problem is self-reducible. The decision problem is to take a graph $G$ and
+an integer $k$ and decide if $G$ has a vertex cover of size $k$ or not.  The optimization problem takes a
+graph $G$, and returns a smallest vertex cover in $G$.  So you must show that if the decision problem
+has a polynomial time algorithm then the optimization problem also has a polynomial time algorithm.
+Recall that a vertex cover is a collection $S$ of vertices with the property that every edge is incident to
+a vertex in $S$.
+    \\
+    \\
+	14.  Consider the problem where the input is a collection of linear inequalities.  For example, the input
+might look like $3x-2y = 3$ and $2x-3x = 9$. The problem is to determine if there is an integer solution
+that simultaneously satisfies all the inequalities. Show that this problem is NP-hard using the fact that
+it is NP-hard to determine if a Boolean formula in conjunctive normal form is satisfiable.
+	\\
+	\\
+	16.  The input to the three coloring problem is a graph $G$, and the problem is to decide whether the vertices
+of $G$ can be colored with three colors such that no pair of adjacent vertices are colored the same color.
+The input to the four coloring problem is a graph $G$, and the problem is to decide whether the vertices
+of $G$ can be colored with four colors such that no pair of adjacent vertices are colored the same color.
+Show by reduction that if the four coloring problem has a polynomial time algorithm then so does the
+three coloring problem. 
+\end{document}
