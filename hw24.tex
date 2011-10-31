@@ -24,12 +24,49 @@
 	the clique problem has a polynomial time algorithm.
 	\\
 	\\
+	\textbf{CLIQUE} $\leq$ \textbf{CLIQUE\_AND\_INDSET}
+	\\
+	\\
+	Program CLIQUE:\\
+	\tab Read graph $G$, int $k$.\\
+	\tab $G^\prime$ = $G$ + $k$ nodes not conected to any other nodes in $G$.\\
+	\tab Return CLIQUE\_AND\_INDSET($G^\prime$,$k$).\\
+	\\
+	\\
+	Since $G$ will contain an independent set of size $k$ as it is added to the original graph, CLIQUE\_AND\_INDSET 
+	will always find an independent set of size $k$. The only aspect that is determined by the original input is if 
+	there is a clique of size $k$, which is the desired functionality. 
+	
+	\newpage
+
 	18. Consider the following problem. The input is an undirected graph $G$ and an integer $k$. The problem
 	is to determine if $G$ contains a clique of size $k$ \textbf{OR} an independent set of size $k$. Show by reduction
 	that if this problem has a polynomial time algorithm then the clique problem has a polynomial time
 	algorithm.
 	\\
 	\\
+	\textbf{CLIQUE} $\leq$ \textbf{CLIQUE\_OR\_INDSET}
+	\\
+	\\
+	Program CLIQUE:\\
+	\tab Read graph $G$, int $k$.\\
+	\tab $G^\prime$ = $G$ + a new node connected to all other nodes in $G$.\\
+	\tab Return CLIQUE\_OR\_INDSET($G^\prime$,$k + 1$).\\
+
+		\begin{figure}[h]
+		\centering
+		\includegraphics[width=290px]{cliqueoris.png}
+		\caption{Construction of $G^\prime$}
+		\end{figure}
+		
+	Figure 1 shows how the construction of the new $G^\prime$ and by increasing the value of $k$ we ensure that
+	CLIQUE\_OR\_INDSET($G^\prime$,$k + 1$) will return true, if and only if $G$ contains a clique of size $k$. 
+	This is the case since we eliminate the independent set by adding the new node and increase the size of the 
+	possibly existing clique with the addition of this new node.
+	
+	\newpage
+
+
 	22. Consider the following problem. The input is a graph $G = (V, E)$, a subset $R$ of vertices of $G$, and a
 	positive integer $k$. The problem is to determine if there is a subset $U$ of $V$ such that
 	\begin{enumerate}
@@ -42,8 +79,9 @@
 	vertex cover problem is a graph $H$ and an integer $\ell$, and the problem is to determine whether $H$ has a
 	vertex cover of size $\ell$ or not. A vertex cover $S$ is a collection of vertices with the property that every
 	edge is incident on at least one vertex in $S$.
-		\\
-	\\
+
+	\newpage
+
 	1. Consider the problem of computing the AND of $n$ bits.
 	\begin{enumerate}
 		\item Give an algorithm that runs in time O(log $n$) using n processors on an EREW PRAM. What is
