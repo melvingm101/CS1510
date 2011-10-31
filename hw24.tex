@@ -14,42 +14,42 @@
 \begin{document}
 	\begin{flushright}
 	Lindsey Bieda and Joe Frambach\\
-	Dynamic Programming Problems\\
+	Reduction and Parallel Problems\\
 	10.31.2011
 	\end{flushright}
-17. Consider the following problem. The input is an undirected graph $G$ and an integer $k$. The problem
-is to determine if $G$ contains a clique of size $k$ AND an independent set of size $k$. Recall that a
-clique is a collection of mutually adjacent vertices, and an independent set is a collection of mutually
-nonadjacent vertices. Show by reduction that if this problem has a polynomial time algorithm then
-the clique problem has a polynomial time algorithm.
-\\
-\\
-18. Consider the following problem. The input is an undirected graph $G$ and an integer $k$. The problem
-is to determine if $G$ contains a clique of size $k$ OR an independent set of size $k$. Show by reduction
-that if this problem has a polynomial time algorithm then the clique problem has a polynomial time
-algorithm.
-\\
-\\
-22. Consider the following problem. The input is a graph $G = (V, E)$, a subset $R$ of vertices of $G$, and a
-positive integer $k$. The problem is to determine if there is a subset $U$ of $V$ such that
-\begin{enumerate}
-\item All the vertices in $R$ are contained in $U$, and
-\item the number of vertices in $U$ is at most $k$, and
-\item for every pair of vertices $x$ and $y$ in $R$, one can walk from $x$ to $y$ in $G$ only traversing vertices that
-are in $U$.
-\end{enumerate}
-Show that this problem is NP-hard using a reduction from Vertex Cover. Recall that the input for the
-vertex cover problem is a graph $H$ and an integer $\ell$, and the problem is to determine whether $H$ has a
-vertex cover of size $\ell$ or not. A vertex cover $S$ is a collection of vertices with the property that every
-edge is incident on at least one vertex in $S$.
+	17. Consider the following problem. The input is an undirected graph $G$ and an integer $k$. The problem
+	is to determine if $G$ contains a clique of size $k$ \textbf{AND} an independent set of size $k$. Recall that a
+	clique is a collection of mutually adjacent vertices, and an independent set is a collection of mutually
+	nonadjacent vertices. Show by reduction that if this problem has a polynomial time algorithm then
+	the clique problem has a polynomial time algorithm.
 	\\
-\\
-1. Consider the problem of computing the AND of n bits.
-\begin{enumerate}
-\item Give an algorithm that runs in time O(log n) using n processors on an EREW PRAM. What is
-the endciency of this algorithm?
-\item Give an algorithm that runs in time O(log n) using n= log n processors on an EREW PRAM.
-What is the endciency of this algorithm?
-\item Give an algorithm that runs in time O(1) using n processors on a CRCW PRAM.
-\end{enumerate}
+	\\
+	18. Consider the following problem. The input is an undirected graph $G$ and an integer $k$. The problem
+	is to determine if $G$ contains a clique of size $k$ \textbf{OR} an independent set of size $k$. Show by reduction
+	that if this problem has a polynomial time algorithm then the clique problem has a polynomial time
+	algorithm.
+	\\
+	\\
+	22. Consider the following problem. The input is a graph $G = (V, E)$, a subset $R$ of vertices of $G$, and a
+	positive integer $k$. The problem is to determine if there is a subset $U$ of $V$ such that
+	\begin{enumerate}
+		\item All the vertices in $R$ are contained in $U$, and
+		\item the number of vertices in $U$ is at most $k$, and
+		\item for every pair of vertices $x$ and $y$ in $R$, one can walk from $x$ to $y$ in $G$ only traversing vertices that
+		are in $U$.
+	\end{enumerate}
+	Show that this problem is NP-hard using a reduction from Vertex Cover. Recall that the input for the
+	vertex cover problem is a graph $H$ and an integer $\ell$, and the problem is to determine whether $H$ has a
+	vertex cover of size $\ell$ or not. A vertex cover $S$ is a collection of vertices with the property that every
+	edge is incident on at least one vertex in $S$.
+		\\
+	\\
+	1. Consider the problem of computing the AND of $n$ bits.
+	\begin{enumerate}
+		\item Give an algorithm that runs in time O(log $n$) using n processors on an EREW PRAM. What is
+		the endciency of this algorithm?
+		\item Give an algorithm that runs in time O(log $n$) using n= log n processors on an EREW PRAM.
+		What is the endciency of this algorithm?
+		\item Give an algorithm that runs in time O(1) using n processors on a CRCW PRAM.
+	\end{enumerate}
 \end{document}
