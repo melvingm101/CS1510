@@ -29,7 +29,7 @@
 	\\
 	Program CLIQUE:\\
 	\tab Read graph $G$, int $k$.\\
-	\tab $G^\prime$ = $G$ + $k$ nodes not conected to any other nodes in $G$.\\
+	\tab $G^\prime$ = $G$ + $k$ nodes not connected to any other nodes in $G$.\\
 	\tab Return CLIQUE\_AND\_INDSET($G^\prime$,$k$).\\
 	\\
 	\\
@@ -83,11 +83,55 @@
 	\newpage
 
 	1. Consider the problem of computing the AND of $n$ bits.
-	\begin{enumerate}
+	\begin{itemize}
 		\item Give an algorithm that runs in time O(log $n$) using n processors on an EREW PRAM. What is
-		the endciency of this algorithm?
-		\item Give an algorithm that runs in time O(log $n$) using n= log n processors on an EREW PRAM.
-		What is the endciency of this algorithm?
-		\item Give an algorithm that runs in time O(1) using n processors on a CRCW PRAM.
+		the efficiency of this algorithm?\\
+		\\
+		The parallel algorithm works as follows:\\
+		AND($x_1, \ldots, x_n$, $p$)\\
+		If $p$ = 1:\\
+		\tab $p$ returns the value it has\\
+		Else:\\
+		\tab and(AND($x_1, \ldots, x_{n/2}$, $p/2$), AND($x_{n/2 + 1}, \ldots, x_n$, $p/2$)), where lowercase 
+		and refers to performing the and of the two returned values. 
+		\begin{figure}[h]
+		\centering
+		\includegraphics[width=290px]{parallel1.png}
+		\caption{Construction of the tree}
+		\end{figure}
+		
+		We end up with the above call tree which demonstrates that this algorithm performs in O(log $n$) time.\\
+		The efficiency is: $n / (2n - 1)$
+		
+		\item Give an algorithm that runs in time O(log $n$) using $n/$log $n$ processors on an EREW PRAM.
+		What is the efficiency of this algorithm?\\
+		\\
+		The parallel algorithm works as follows:\\
+		AND($x_1, \ldots, x_n$, $p$)\\
+		If $p$ = 1:\\
+		\tab $p$ performs the following:\\
+		\tabb For each bit:\\
+		\tabbb if bit = 0: return 0\\
+		\tabb return 1\\
+		Else:\\
+		\tab and(AND($x_1, \ldots, x_{n/2}$, $p/2$), AND($x_{n/2 + 1}, \ldots, x_n$, $p/2$)), where lowercase 
+		and refers to performing the and of the two returned values.\\
+		\\
+		The tree structure is very similar to the one above, however, the height is now log(log $n$) and there are $n/($log$n)$ leaves.
+		Each leaf takes log($n$) time to process the data.
+		\\
+		The efficiency is: $n/ ( n + (n/$log$ n ) - 1)$\\
+		\\
+		\item Give an algorithm that runs in time O(1) using n processors on a CRCW PRAM.\\
+		\\
+		Answer = 1\\
+		\\
+		For processor $i = 1$ to $n$:\\
+		\tab $processor_i$ runs:\\
+		\tabb If $b_i$ == 0:\\
+		\tabbb Anwser = 0.\\
+		return Answer.\\
+		\\
+		Each processor takes one bit and if it is a 0 they write a 0 to the answer memory location.  
 	\end{enumerate}
 \end{document}
