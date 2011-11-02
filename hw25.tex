@@ -24,7 +24,26 @@ then the decision version of the 3-coloring problem has a polynomial time algori
 20. In the dominating set problem the input is an undirected graph $G$, the problem is to find the smallest
 dominating set in $G$. A dominating set is a collection $S$ of vertices with the property that every vertex
 $v$ in $G$ is either in $S$, or there is an edge between a vertex in $S$ and $v$. Show that the dominating set
-problem is NP-hard using a reduction from the vertex cover problem.
+problem is NP-hard using a reduction from the vertex cover problem.\\
+\\
+\textbf{VERTEX COVER} $\leq$ \textbf{DOMINATING SET}\\
+\\
+Program Vertex Cover:\\
+\tab Read graph $G$.\\
+\tab $G^\prime$ = G + an additional vertex for every edge, such that, the vertex is connected to the nodes that create the edge.\\
+\tab Ouput DominatingSet($G^\prime$)\\
+\\
+The following figure more clearly shows how $G$ is transformed to $G^\prime$. 
+\begin{figure}[h]
+	\centering
+		\includegraphics{red20.png}
+	\label{fig:red20}
+\end{figure}
+Since Vertex Cover is concerned with the vertices including the edges and dominating set is interested specifically in the vertices,
+adding these new vertices as representations of the edges ensures that the resulting dominating set is a vertex cover. Additionally,
+none of these new additional vertices should be selected as one of the dominating set, due to how they are connected into the graph. 
+If one is selected there will always be a smaller dominating set that does no include that outside connection. 
+
 \newpage
 
 23. In the disjoint paths problem the input is a directed graph $G$ and pairs $(s_1, t_1), \ldots, (s_k, t_k)$ of vertices.
@@ -58,11 +77,31 @@ integers, where each entry of $A$ is equal to $x$.\\
 
 Give an algorithm runs in time O($log~n$) on a EREW PRAM using $n$ processors. What is the
 efficiency of this algorithm?\\
-
+\\
+The algorithm works as follows:\\
+Assign($1, \ldots, n/2$, $n/2$), Assign($n/2 + 1, \ldots, n$, $n/2$)\\ 
+where Assign us a recursive call to assign $x$ to the $i$th location in the array.\\
+The resulting call tree has a height of $log~n$, and $n$ leaves.\\
+T($n$, $p$) calls two parallel calls requiring T($n/2$, $p/2$). From this we 
+determine the efficiency to be: $n/n(1 + lg~n) =  1/(1+ lg~n)$, since the time spent in an 
+individual leaf will be 1 time unit performing the assignment.\\ 
+\\
 Give an algorithm that runs in time O($log~n$) on a EREW PRAM using $n/log~n$ processors. What
 is the efficiency of this algorithm?\\
-
+\\
+The recurrence relation is the same as the previous problem, but the value of $p$ has changed.\\
+The height of this tree is $log~p$ = $log(n/log~n)$ and the time spent in an individual leaf is $log~n$.\\ 
+Using the same algorithm as above we calculate the efficiency as:\\
+	\[
+	E(n,p) = \frac{log(n)}{log(n)+log(\frac{n}{log(n)})}
+\]
+\\
+\\
 Give an algorithm that runs in time O(1) on a CRCW PRAM using $n$ processors. What is the
-efficiency of this algorithm?
+efficiency of this algorithm?\\
+In one time step, each processor reads $x$ and writes to a location in $A$. This algorithm requires
+a CREW machine. T($n$,$p$) calls $n$ parallel calls requiring O(1) time, with a call tree of height one.
+The efficiency is: $\frac{S(n)}{p~\mdot~T(n,p)} = \frac{n}{n~\mdot~1} = 1$.
+\\
 
 \end{document}
