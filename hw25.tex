@@ -18,7 +18,34 @@
 	11.02.2011
 	\end{flushright}
 19. Show by reduction that if the decision version of the SAT-CNF problem has a polynomial time algorithm
-then the decision version of the 3-coloring problem has a polynomial time algorithm.
+then the decision version of the 3-coloring problem has a polynomial time algorithm.\\
+\\
+\textbf{3-COLOR} $\leq$ \textbf{SAT-CNF}\\
+\\
+Program 3-Color:\\
+\tab Read Graph $G$.\\
+\tab $S$ = Transformed $G$.\\
+\tab Return SAT-CNF($S$).\\
+\\
+Transforming $G$ to $S$ is as follows:\\ 
+For every node $a$ the following sentences are constructed, note that each of these sentences
+are joined by a conjunction:\\
+Here we are using r, g, and b to denote the three different colors. 
+\begin{itemize}
+	\item $a_r \vee a_g \vee a_b$: a must be one of the three colors
+	\item $a_r \rightarrow (\neg a_g \wedge \neg a_b)$ which is equivalent to $(\neg a_r \vee \neg a_g) \wedge (\neg a_r \vee \neg a_b)$: if $a$ is red it cannot be green or blue
+	\item $a_g \rightarrow (\neg a_r \wedge \neg a_b)$ which is equivalent to $(\neg a_g \vee \neg a_r) \wedge (\neg a_g \vee \neg a_b)$: if $a$ is green it cannot be red or blue
+	\item $a_b \rightarrow (\neg a_r \wedge \neg a_g)$ which is equivalent to $(\neg a_b \vee \neg a_r) \wedge (\neg a_b \vee \neg a_g)$: if $a$ is blue it cannot be red or green
+\end{itemize}
+For each of the edges ($a$ to $b$) we construct the following sentences, note that each of these
+sentences are joined by a conjunction:
+\begin{itemize}
+	\item $a_r \rightarrow \neg b_r$ which is equivalent to $\neg a_r \vee \neg b_r$: if $a$ is red, $b$ cannot be red
+	\item $a_g \rightarrow \neg b_g$ which is equivalent to $\neg a_g \vee \neg b_g$: if $a$ is green, $b$ cannot be green
+	\item $a_b \rightarrow \neg b_b$ which is equivalent to $\neg a_b \vee \neg b_b$: if $a$ is blue, $b$ cannot be blue  
+\end{itemize}
+All the conjunction of the above sentences must be satisfiable if and only if the input graph $G$ is 3-colorable.
+
 \newpage
 
 20. In the dominating set problem the input is an undirected graph $G$, the problem is to find the smallest
