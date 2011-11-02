@@ -69,7 +69,16 @@ parallel algorithm for $N$ is at least a hard of a problem as finding a fast eff
 Boolean Formula Value problem? Be as specific as possible, and explain how convincing the evidence
 is.\\
 Note that ``fast and efficient'' means poly-log time with a polynomial number of processors. The term
-``poly-log'' means bounded by O($log^kn$) for some constant $k$.
+``poly-log'' means bounded by O($log^kn$) for some constant $k$.\\
+\\
+With a standard reduction problem we create a polynomial time mapping from the input of Boolean Formula Value
+problem to the input of $N$.\\
+In parallel, we construct a parallel polynomial time mapping for the input of Boolean Formula Value to the
+to the input of  $N$and demonstate that the Boolean Formula Value algorithm
+returns a given result if and only if $N$ returns a certain result.\\
+This shows that the Boolean Forumla Value algorithm will take at least the amount of time that $N$
+takes. Since, we do not have a fast efficient parallel algorithm
+for the Boolean Formula Value Problem we must not have one for $N$.
 \newpage
 
 3. Consider the problem of taking as input an integer $n$ and an integer $x$, and creating an array $A$ of $n$
