@@ -1,0 +1,50 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{qtree}
+\usepackage{rotating}
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\tabb}{\hspace*{4em}}
+\newcommand{\tabbb}{\hspace*{6em}}
+\newcommand{\tabbbb}{\hspace*{8em}}
+\newcommand{\tabbbbb}{\hspace*{10em}}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\setlength{\parindent}{0in} 
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Reduction and Parallel Problems\\
+	11.04.2011
+	\end{flushright}
+
+21. The input to the Fixed Hamiltonian path problem is an undirected graph $G$ and two vertices $x$ and $y$
+in $G$. The problem is to determine if there is a simple path between $x$ and $y$ in $G$ that spans all the
+vertices in $G$. A path is simple if it doesn't include any vertex more than once. Show that if the Fixed
+Hamiltonian path problem has a polynomial time algorithm then the Hamiltonian cycle problem has
+a polynomial time algorithm.\\
+HINT: I think it is easier to do this problem if you don't restrict yourself to a many-to-one reduction,
+that is, feel free to call the path procedure multiple times.
+
+\newpage
+25. We consider a generalization of the Fox, goose and bag of beans puzzle
+\verb=http://en.wikipedia.org/wiki/Fox,_goose_and_bag_of_beans_puzzle= \\
+The input is a graph $G$ an integer $k$. The vertices of $G$ are objects that the farmer has to transport
+over the river, there are an edge between two objects if they can not be left alone together on the same
+size of the river. The goal is to determine if a boat of size $k$ is sucient to safely transport the objects
+across the river. The size of the boat is the number of objects that the farmer can haul in the boat.
+Show that this problem is NP-hard using a reduction from one of the problems that either I showed
+was NP-hard in class, or that you showed was NP-hard in the homework. So I am letting you pick the
+problem to reduce from here. You should take some time to reflect which problem would be easiest to
+reduce from.
+
+\newpage
+4. Design a parallel algorithm for the parallel prefix problem that runs in time O($log~n$) with $n/log~n$
+processors on a EREW PRAM.
+
+\newpage
+5. Give an algorithm that given an integer $n$ computes $n!$, that is $n$ factorial, in time O($log~n$) on an
+EREW PRAM with n processors. Make the unrealistic assumption that a word of memory can store
+arbitrarily large integers.
+
+\end{document}
