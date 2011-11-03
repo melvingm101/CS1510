@@ -1,0 +1,51 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{qtree}
+\usepackage{rotating}
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\tabb}{\hspace*{4em}}
+\newcommand{\tabbb}{\hspace*{6em}}
+\newcommand{\tabbbb}{\hspace*{8em}}
+\newcommand{\tabbbbb}{\hspace*{10em}}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\setlength{\parindent}{0in} 
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Reduction and Parallel Problems\\
+	11.11.2011
+	\end{flushright}
+
+12. Explain how to modify the all-pairs shortest path algorithm for a CREW PRAM that was given in
+class so that it runs in time O(log
+2
+n) on a EREW PRAM with n
+3
+processors.
+
+\newpage
+13. Explain how to modify the all-pairs shortest path algorithm for a CREW PRAM that was given in
+class so that it actually returns the shortest paths (not just their lengths) in time O(log
+2
+n) on a EREW
+PRAM with n
+3
+processors.
+
+\newpage
+14. Explain how to solve the longest common subsequence problem in time O(log
+2
+n) using at most a
+polynomial number of processors on a CREW PRAM.
+HINT: One way to do this is to reduce the longest common subsequence problem to a shortest path
+problem. Note that the shortest path algorithm works for any graph for which there are not cycles
+whose aggregate weight is negative.
+
+\newpage
+16. Design a parallel algorithms that merges two sorted arrays into one sorted array in time O(1) using a
+polynomial number of processors on a CRCW PRAM.
+
+
+\end{document}

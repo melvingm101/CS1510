@@ -1,0 +1,40 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{qtree}
+\usepackage{rotating}
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\tabb}{\hspace*{4em}}
+\newcommand{\tabbb}{\hspace*{6em}}
+\newcommand{\tabbbb}{\hspace*{8em}}
+\newcommand{\tabbbbb}{\hspace*{10em}}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\setlength{\parindent}{0in} 
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Reduction and Parallel Problems\\
+	11.18.2011
+	\end{flushright}
+
+
+22. Give a parallel algorithm for the following problem that runs in time O(log n) on an EREW PRAM.
+The input is a binary tree with n nodes. Assume that each processor has a pointer to a unique node
+in the tree. The problem is determine the balance factor of each node in the tree. The balance factor
+of a node is the height of its left subtree minus the height of its right subtree.
+
+24. Design a parallel algorithm that takes a binary expression tree, where the leaves are Boolean values
+0 or 1, and the internal nodes are the three standard logical operations: NOT, OR, and AND. The
+output should be the value of the expression represented by the tree. Your algorithm should run in
+O(log n) time on a CREW PRAM with n processors, where n is the number of nodes in the tree. You
+may assume that each processor initially has a pointer to a unique node in the tree.
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,41 @@
+\documentclass[10pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{qtree}
+\usepackage{rotating}
+\newcommand{\tab}{\hspace*{2em}}
+\newcommand{\tabb}{\hspace*{4em}}
+\newcommand{\tabbb}{\hspace*{6em}}
+\newcommand{\tabbbb}{\hspace*{8em}}
+\newcommand{\tabbbbb}{\hspace*{10em}}
+\newcommand{\norm}[1]{\left|\left|#1\right|\right|}
+\setlength{\parindent}{0in} 
+\begin{document}
+	\begin{flushright}
+	Lindsey Bieda and Joe Frambach\\
+	Parallel Problems\\
+	11.09.2011
+	\end{flushright}
+
+9. The input to this problem is a character string $C$ of $n$ letters. The problem is to find the largest $k$
+such that
+C[1]C[2] : : : C[k] = C[n  k + 1] : : : C[n  1]C[n]
+That is, $k$ is the length of the longest prefix that is also a suffix. Give a EREW parallel algorithm that
+runs in poly-logarithmic time with a polynomial number of processors.
+
+\newpage
+10. The input to this problem is a character string $C$ of $n$ letters. The problem is to find the largest $k$
+such that
+C[1]C[2] : : : C[k] = C[n  k + 1] : : : C[n  1]C[n]
+That is, $k$ is the length of the longest prefix that is also a suffix. Give a CRCW parallel algorithm that
+runs in constant time with a polynomial number of processors.
+
+\newpage
+11. Design a parallel algorithm for adding two $n$-bit integers. You algorithm should run in O($log~n$) time
+on a CREW PRAM with n processors.\\
+NOTE: If your algorithm is EREW, you might want to rethink since I don't know how to do this easily
+with out CR.\\
+HINT: Use divide and conquer and generalize the induction hypothesis.
+
+\end{document}
