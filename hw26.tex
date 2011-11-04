@@ -24,25 +24,27 @@ vertices in $G$. A path is simple if it doesn't include any vertex more than onc
 Hamiltonian path problem has a polynomial time algorithm then the Hamiltonian cycle problem has
 a polynomial time algorithm.\\
 HINT: I think it is easier to do this problem if you don't restrict yourself to a many-to-one reduction,
-that is, feel free to call the path procedure multiple times.
+that is, feel free to call the path procedure multiple times.\\
 \\
 \textbf{HAMCYCLE}$\leq$\textbf{FIXED-HAMPATH}\\
+\\
 The graph has a Hamiltonian Cycle if there is a fixed Hamiltonian Path starting and ending with adjacent vertices.\\
 Program HAMCYCLE:
 \tab Read Graph $G$.\\
 \tab For each edge with vertices $x$ and $y$,\\
 \tabb If FIXED-HAMPATH($G$,$x$,$y$) returns true,\\
-\tabbb Return true.
+\tabbb Return true.\\
 \tab Return false.\\
 \\
 It should be obvious from the above that HAMCYCLE will return true if and only if for some pair of adjacent vertices,
 there is a FIXED-HAMPATH.
 
 \newpage
-25. We consider a generalization of the Fox, goose and bag of beans puzzle
+25. We consider a generalization of the Fox, goose and bag of beans puzzle\\
 \verb=http://en.wikipedia.org/wiki/Fox,_goose_and_bag_of_beans_puzzle= \\
 The input is a graph $G$ an integer $k$. The vertices of $G$ are objects that the farmer has to transport
 over the river, there are an edge between two objects if they can not be left alone together on the same
+H
 size of the river. The goal is to determine if a boat of size $k$ is sufficient to safely transport the objects
 across the river. The size of the boat is the number of objects that the farmer can haul in the boat.
 Show that this problem is NP-hard using a reduction from one of the problems that either I showed
@@ -50,7 +52,7 @@ was NP-hard in class, or that you showed was NP-hard in the homework. So I am le
 problem to reduce from here. You should take some time to reflect which problem would be easiest to
 reduce from.\\
 \\
-\textbf{VERTEX-COVER}$\leq$\textbf{FOX-GOOSE-BAG}\\
+\textbf{VERTEX-COVER} $\leq$ \textbf{FOX-GOOSE-BAG}\\
 \\
 Program VERTEX-COVER:\\
 \tab Read Graph $G$, int $k$.\\
