@@ -33,7 +33,28 @@ processors. What is the efficiency of this algorithm? HINT: Recall problem 3.
 \newpage
 7. Design a parallel algorithm that given a polynomial p($x$) of degree $n$ and an integer $k$ computes the value
 of p($k$). You algorithm should run in time O($log~n$) on a EREW PRAM with O($n/log~n$) processors.
-Assume that the polynomial is represented by its coefficients.
+Assume that the polynomial is represented by its coefficients.\\
+\\
+Refer to Problem 3:\\
+\tab Consider the problem of taking as input an integer $n$ and an integer $x$,\\
+\tab and creating an array $A$ of $n$ integers, where each entry of $A$ is equal to $x$.\\
+\tab Give an algorithm that runs in time O($log~n$) on a EREW PRAM using\\
+\tab $n/log n$ processors.\\
+\tab What is the efficiency of this algorithm?\\
+\\
+This is used to generate $n$ copies of $k$.\\
+\\
+Next, refer to Problem 4:\\
+\tab Design a parallel algorithm for the parallel prefix problem that runs in\\
+\tab time O($log~n$) with $n/log~n$ processors on a EREW PRAM.\\
+\\
+This can be modified to use multiplication rather than addition since both operations are associative.\\
+This is used to generate $k,~k^2,~\ldots,~ k^n$.\\
+\\
+Finally, we need to sum $p_nk^n~+~p_{n-1}k^{n-1}~+~\ldots~+~p_1k~+~p_0$.\\
+A divide-and-conquer approach is used. The terms are split in half, for two processors, split in half again for four processors, 
+until all $n/log~n$ processors are in use, each calculating the sum of $log~n$ products. The tree has a height of $log~log~n$.
+This summation runs in O($log~n$) time.\\
 
 \newpage
 8. We consider the problem of computing $F_n$, the $n$th Fibonacci number, given an integer $n$ as input.
