@@ -19,15 +19,82 @@
 	\end{flushright}
 
 6. We consider the problem of multiplying two n by n matrices.\\
+Given input matrices $A$ and $B$, calculate $AB = C$.\\
+\[
+\left[ \begin{array}{ccc}
+a_{11} & \cdots & a_{1n}\\
+\vdots & & \vdots\\
+a_{n1} & \cdots & a_{nn}
+\end{array} \right]
+\left[ \begin{array}{ccc}
+b_{11} & \cdots & b_{1n}\\
+\vdots & & \vdots\\
+b_{n1} & \cdots & b_{nn}
+\end{array} \right]
+=
+\left[ \begin{array}{ccc}
+c_{11} & \cdots & c_{1n}\\
+\vdots & & \vdots\\
+c_{n1} & \cdots & c_{nn}
+\end{array} \right]
+\]
+\\
 \begin{enumerate}
 \item Design a parallel algorithm that runs in time $n$ on a CREW PRAM with $n^2$
-processors. What is the efficiency of this algorithm?
+processors. What is the efficiency of this algorithm?\\
+\\
+parallel-for i=1 to n:\\
+\tab parallel-for j=1 to n:\\
+\tabb sum = 0\\
+\tabb for k = 1 to n:\\
+\tabbb sum += $a_{i,k} \cdot b_{k,j}$\\
+\tabb $c_{i,j}$ = sum\\
+\\
+
 \item Design a parallel algorithm that runs in time O($log~n$) time on a CREW PRAM with $n^3$
-processors. What is the efficiency of this algorithm?
+processors. What is the efficiency of this algorithm?\\
+\\
+parallel-for i=1 to n:\\
+\tab parallel-for j=1 to n:\\
+\tabb parallel-for k = 1 to n:\\
+\tabbb product_{i,j,k} = $a_{i,k} \cdot b_{k,j}$\\
+\tabb \emph{Each element of $C$ is the sum of $product_{i,j,k}$ for $k$ from 1 to $n$}.\\
+\tabb \emph{The summation of $n$ numbers with $n$ processors on a CREW PRAM is done in O($log~n$) time.}\\
+\tabb \emph{A call tree of height $log~n$ and $n$ leaves is created:}\\
+\tabb \emph{At each level of the tree, half of the processors are responsible for summing the lower level.}\\
+\tabb \emph{Thus, in O($log~n$) time, $C_{i,j}$ is computed.}\\
+\tabb $c_{i,j} = \sum_{k=1}^{n}product_{i,j,k}$.\\
+\\
+
 \item Design a parallel algorithm that runs in time O($log~n$) time on a CREW PRAM with $n^3/log~n$
-processors. What is the efficiency of this algorithm?
+processors. What is the efficiency of this algorithm?\\
+\\
+This follows exactly as described for $n^3$ processors, except each processor is now responsible for
+$log~n$ multiplications rather than just one. Something like this should approximately suffice:\\
+parallel-for i = 1 to $n^3/log~n$: \emph{Each processor...}\\
+\tab for j = 1 to $log~n$: \emph{...is responsible for $log~n$ computations}\\
+\tabb product_{i/n^2,i/n,i\%{n}+j} = $a_{i/n^2,i\%{n}+j} \cdot b_{i\%{n}+j,i/n}$\\
+parallel-for i = 1 to n:\\
+\tab parallel-for j = 1 to n:\\
+\tabb \emph{Now we have $n/log~n$ processors to compute the sum of $product_{i,j,k}$ in O($log~n$) time.}\\
+\tabb \emph{This is done just as the multiplications are done.}\\
+\tabb \emph{A call tree of height $log~(n/log~n)$ with $n/log~n$ leaves is created.}\\
+\tabb \emph{Each leaf processor is responsible for summing $log~n$ numbers in O($log~n$) time.}\\
+\tabb \emph{The summations backtrace in O($log~(n/log~n)$) time.}\\
+            
 \item Design a parallel algorithm that runs in time O($log~n$) time on a EREW PRAM with $n^3/log~n$
-processors. What is the efficiency of this algorithm? HINT: Recall problem 3.
+processors. What is the efficiency of this algorithm? HINT: Recall problem 3.\\
+\\
+Problem 3 provides an O($log~n$) algorithm to copy a number $n$ times with $n/log~n$ processors on an EREW PRAM.
+In O($log~n$) time, we can create $n$ copies of $A$ and $B$.\\
+parallel-for i = 1 to n:\\
+\tab parallel-for j = 1 to n:\\
+\tabb Call Problem3 on $a_{i,j}$.\\
+\tabb Call Problem3 on $b_{i,j}$.\\
+\\
+Now, the matrix multiplication can be done exactly as in problem 1.3, except each set of $n$ processors have their
+own ``slice'' of $A$, and their own ``slice'' of $B$, granting exclusive read.
+TODO: actually work out the details and efficiency.
 \end{enumerate}
 
 \newpage
@@ -45,7 +112,7 @@ HINT: Note that for $j > 0$
 \[
 \left[ \begin{array}{cc}
 1 & 1\\
-0 & 0
+1 & 0
 \end{array} \right]
 \left[ \begin{array}{c}
 F_j\\
