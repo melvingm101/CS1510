@@ -57,7 +57,7 @@ processors. What is the efficiency of this algorithm?\\
 parallel-for i=1 to n:\\
 \tab parallel-for j=1 to n:\\
 \tabb parallel-for k = 1 to n:\\
-\tabbb product_{i,j,k} = $a_{i,k} \cdot b_{k,j}$\\
+\tabbb $product_{i,j,k}$ = $a_{i,k} \cdot b_{k,j}$\\
 \tabb \emph{Each element of $C$ is the sum of $product_{i,j,k}$ for $k$ from 1 to $n$}.\\
 \tabb \emph{The summation of $n$ numbers with $n$ processors on a CREW PRAM is done in O($log~n$) time.}\\
 \tabb \emph{A call tree of height $log~n$ and $n$ leaves is created:}\\
@@ -73,7 +73,7 @@ This follows exactly as described for $n^3$ processors, except each processor is
 $log~n$ multiplications rather than just one. Something like this should approximately suffice:\\
 parallel-for i = 1 to $n^3/log~n$: \emph{Each processor...}\\
 \tab for j = 1 to $log~n$: \emph{...is responsible for $log~n$ computations}\\
-\tabb product_{i/n^2,i/n,i\%{n}+j} = $a_{i/n^2,i\%{n}+j} \cdot b_{i\%{n}+j,i/n}$\\
+\tabb $product_{i/n^2,i/n,i\%{n}+j}$ = $a_{i/n^2,i\%{n}+j} \cdot b_{i\%{n}+j,i/n}$\\
 parallel-for i = 1 to n:\\
 \tab parallel-for j = 1 to n:\\
 \tabb \emph{Now we have $n/log~n$ processors to compute the sum of $product_{i,j,k}$ in O($log~n$) time.}\\
@@ -145,6 +145,57 @@ F_{j+1}\\
 F_j
 \end{array} \right]
 \]
+\\
+First we explored the process of repeatedly squaring the matrix described above:
+\[
+\left[ \begin{array}{cc}
+1 & 1\\
+1 & 0
+\end{array} \right]^2
+=
+\left[ \begin{array}{cc}
+2 & 1\\
+1 & 1
+\end{array} \right]
+\]
+\\
+\[
+\left[ \begin{array}{cc}
+2 & 1\\
+1 & 1
+\end{array} \right]^2
+=
+\left[ \begin{array}{cc}
+5 & 3\\
+3 & 2
+\end{array} \right]
+\]
+\\
+\[
+\left[ \begin{array}{cc}
+5 & 3\\
+3 & 2
+\end{array} \right]^2
+=
+\left[ \begin{array}{cc}
+34 & 21\\
+21 & 13
+\end{array} \right]
+\]
+\\
+So we begin with Fib(n) at the root of the call tree. It splits into two parallel calls to Fib(n/2), and so forth,
+until there are $n$ processors at the leaves all calculating:\\
+\[
+\left[ \begin{array}{cc}
+1 & 1\\
+1 & 0
+\end{array} \right]^2
+\].
+\\
+The tree evaluates the matrix multiplications in parallel. The tree has a height of $log~n$ and the matrix
+multiplication takes O(1) time since the dimensions are static (2).\\
+The top-left cell of the resulting matrix at the root contains Fib(n).\\
+
 
 \newpage
 Extra Credit: Reduction 24. The input to the triangle problem is a subset $W$ of the Cartesian product $X \times Y \times Z$ of sets $X, Y$
