@@ -22,7 +22,11 @@
 such that
 \[C[1]C[2] \ldots C[k] = C[n - k + 1] \ldots C[n - 1]C[n]\]
 That is, $k$ is the length of the longest prefix that is also a suffix. Give a EREW parallel algorithm that
-runs in poly-logarithmic time with a polynomial number of processors.
+runs in poly-logarithmic time with a polynomial number of processors.\\
+\\
+Create up to $2n$ copies for $n$ characters with $n^2$ processors in log $n$ time using problem 3.a. After this
+point we can use these copies 
+
 
 \newpage
 10. The input to this problem is a character string $C$ of $n$ letters. The problem is to find the largest $k$
