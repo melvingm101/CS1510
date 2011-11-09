@@ -22,7 +22,50 @@
 such that
 \[C[1]C[2] \ldots C[k] = C[n - k + 1] \ldots C[n - 1]C[n]\]
 That is, $k$ is the length of the longest prefix that is also a suffix. Give a EREW parallel algorithm that
-runs in poly-logarithmic time with a polynomial number of processors.
+runs in poly-logarithmic time with a polynomial number of processors.\\
+\\
+This solution relies heavily on the solution to problem 3a: using $n$ processors to create $n$ copies of 
+an input $k$ in O($log~n$) time. I will just use the result as if it were a simple operation.\\
+\\
+The input is: $c_1, c_2, c_3, \ldots, c_{n-2}, c_{n-1}, c_n$.\\
+We can use $n^2$ processors to create $n$ copies of the input in O($log~n$) time:\\
+\[
+\begin{array}{ccccccc}
+c_1 & c_2 & c_3 & \ldots & c_{n-2} & c_{n-1} & c_n \\
+c_1 & c_2 & c_3 & \ldots & c_{n-2} & c_{n-1} & c_n \\
+    &     &     & \vdots &         &         &     \\
+c_1 & c_2 & c_3 & \ldots & c_{n-2} & c_{n-1} & c_n \\
+c_1 & c_2 & c_3 & \ldots & c_{n-2} & c_{n-1} & c_n \\
+\end{array}
+\]
+Then, we do that again, except each processor has an ``offset'' 1 to $n$ for the write location.
+The figure below should be clear.\\
+\[
+\begin{array}{ccccccccccccc}
+    & c_1 & c_2 & \ldots & c_{n-3} & c_{n-2} & c_{n-1} & c_n \\
+c_1 & c_2 & c_3 & \ldots & c_{n-2} & c_{n-1} & c_n \\
+\\
+    &     & c_1 & \ldots & c_{n-4} & c_{n-3} & c_{n-2} & c_{n-1} & c_n \\
+c_1 & c_2 & c_3 & \ldots & c_{n-2} & c_{n-1} & c_n \\
+\\
+    &     &     & \vdots &         &         &     \\
+\\
+    &     &     &        &         & c_1     & c_2 & c_3 & \ldots & c_{n-1} & c_n \\
+c_1 & c_2 & c_3 & \ldots & c_{n-2} & c_{n-1} & c_n \\
+\\
+    &     &     &        &         &         & c_1 & c_2 & \ldots & c_{n-1} & c_n \\
+c_1 & c_2 & c_3 & \ldots & c_{n-2} & c_{n-1} & c_n \\
+\end{array}
+\]
+Next, we use $n$ processors on each ``pairing'' above, for a total of $n^2$ processors. Each processor writes
+a $1$ if the aligning characters are equal, otherwise write $0$.\\
+\\
+Next, we have $n$ AND-problems. Each pairing contains $1$ to $n$ ones or zeroes. If a prefix equals a suffix,
+then all comparisons yielded $1$. The AND-problem for $n$ inputs is solved with $n$ processors in $log~n$ time (Problem 1).
+\\
+Now, we have to find the MAX of the alignment-lengths of the pairings which yielded $1$ for the comparison. This is again
+done in $log~n$ time with $n$ processors using the same method as every other problem we've seen so far.\\
+
 
 \newpage
 10. The input to this problem is a character string $C$ of $n$ letters. The problem is to find the largest $k$
