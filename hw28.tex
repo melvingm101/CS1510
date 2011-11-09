@@ -74,16 +74,30 @@ such that
 That is, $k$ is the length of the longest prefix that is also a suffix. Give a CRCW parallel algorithm that
 runs in constant time with a polynomial number of processors.\\
 \\
-We will need $n/2$ processors in order to determine if there is a prefix and a suffix at most of length $n/2$.
-This is the maximum length to consider since any prefix longer than $n/2$ has less than $n/2$ as the remaining 
-possible suffix and therefore the prefix and suffix cannot be equivalent. Each of these $n/2$ processors check
-for a prefix and suffix that is of length $\frac{n}{2}, \frac{n}{2} - 1, \frac{n}{2} - 2, \ldots, 1$. Since we write
-0 initially to the solution location there is no need to verify. For each of these processors they check if the string 
-at the beginning and the end of the given length is equal and then write to the memory location if and only if the $k$
-value stored there is less than the value being written.\\
+Consider the following setup from the previous problem:\\
+\[
+\begin{array}{ccccccccccccc}
+    & c_1 & c_2 & \ldots & c_{n-3} & c_{n-2} & c_{n-1} & c_n \\
+c_1 & c_2 & c_3 & \ldots & c_{n-2} & c_{n-1} & c_n \\
 \\
-In order to verify the equality of these two substrings we need $k$ processors each required to look in one index in the two
-string arrays. The equality bit starts at 1 and if at the same index two letters differ a 0 is written. 
+    &     & c_1 & \ldots & c_{n-4} & c_{n-3} & c_{n-2} & c_{n-1} & c_n \\
+c_1 & c_2 & c_3 & \ldots & c_{n-2} & c_{n-1} & c_n \\
+\\
+    &     &     & \vdots &         &         &     \\
+\\
+    &     &     &        &         & c_1     & c_2 & c_3 & \ldots & c_{n-1} & c_n \\
+c_1 & c_2 & c_3 & \ldots & c_{n-2} & c_{n-1} & c_n \\
+\\
+    &     &     &        &         &         & c_1 & c_2 & \ldots & c_{n-1} & c_n \\
+c_1 & c_2 & c_3 & \ldots & c_{n-2} & c_{n-1} & c_n \\
+\end{array}
+\]
+Since we have a CRCW machine, the instances of $c_i$ can be considered references rather than copies.\\
+The rest of the operations are exactly the same as the previous problem, with modifications for CRCW.\\
+The AND-problem is constant-time with $n$ processors per ``pairing''.\\
+The MAX operation is the same as the MIN operation, which was done in class and is available in the course notes.
+It requires $n^2$ processors, comparing each pairing of numbers, returning $1$ if the first is greater, $0$ otherwise.
+The AND operation is run on each row. The row containing no zeroes is the MAX.
 
 \newpage
 11. Design a parallel algorithm for adding two $n$-bit integers. You algorithm should run in O($log~n$) time
