@@ -77,11 +77,42 @@ We then create $n$ copies of both $D$ and $M$ using $n^3$ using the algorithm in
 polynomial number of processors on a CREW PRAM.\\
 HINT: One way to do this is to reduce the longest common subsequence problem to a shortest path
 problem. Note that the shortest path algorithm works for any graph for which there are not cycles
-whose aggregate weight is negative.
+whose aggregate weight is negative.\\
+\\
+
+
 
 \newpage
 16. Design a parallel algorithms that merges two sorted arrays into one sorted array in time O(1) using a
-polynomial number of processors on a CRCW PRAM.
+polynomial number of processors on a CRCW PRAM.\\
+\\
+The input is two lists,\\
+A = [$a_1, a_2, a_3, a_4, \ldots, a_{n-3}, a_{n-2}, a_{n-1}, a_n$]\\
+B = [$b_1, b_2, b_3, b_4, \ldots, b_{n-3}, b_{n-2}, b_{n-1}, b_n$]\\
+\\
+At a high level, the algorithm works by considering the range $(a_i, a_{i+1})$ and inserting the values
+of B which fall within that range (using parallel MIN and MAX operations in O(1) time). This happens
+concurrently for all adjacent pairs in $A$.\\
+If $b_1 < a_1$, then consider ranges $(b_i, b_{i+1})$ and insert values of A, rather than the other way.\\
+For simplicity, though, assume $a_1 < b_1$.\\
+\\
+In order to do the insertions in constant time, the input is assumed to be doubly linked lists, so
+the insertion is simply a constant-time rearrangement of pointers.\\
+\\
+ParFor i = 1 to n:\\
+\tab Find the smallest $b_j$ greater than $a_i$.\\
+\tab Find the largest $b_k$ smaller than $a_{i+1}$.\\
+\tab Insert $b_j \ldots b_k$ between $a_i$ and $a_{i+1}$.\\
+\\
+Algorithm for finding $b_j$ = smallest $B$ greater than $a_i$:\\
+ParFor k = 1 to n:\\
+\tab if $b_k > a_i$:\\
+\tabb write T[i,k] = $b_k$\\
+\tab else:\\
+\tabb write T[i,k] = $\infty$\\
+\tab Using the O(1) CRCW MIN program in the class notes, find MIN(T[i,*]).\\
+\tab Return MIN(T[i,*]) and its index.\\
+Algorithm for smallest $b_k$ smaller than $a_{i+1}$ is complementary.\\
 
 
 \end{document}
