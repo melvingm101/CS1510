@@ -37,8 +37,17 @@ $\Omega(k^2)$ processors. Try divide and conquer into $\sqrt{n}$ subproblems.
 distinct) integers in the range 1 to $n$. Your algorithm should run in constant time on a CRCW Priority
 PRAM with $n$ processors. Note that it is important here that the $x_i$'s have restricted range. In a
 CRCW priority PRAM, each processor has a unique positive integer identifier, and in the case of write
-conflicts, the value written is the value that the processor with the lowest identifier is trying to write.
-
+conflicts, the value written is the value that the processor with the lowest identifier is trying to write.\\
+\\
+ParFor $i$ = 1 to $n$:\\
+\tab Existance[$x_i$] = 1\\
+\\
+ParFor $i$ = 1 to $n$:\\
+\tab Write $n-i$ to Output if Existance[$x_i$]\\
+\\
+First we create an existance array to determine which numbers in the range of $1 \ldots n$ exist. Then we make use
+of the Priority PRAM and write to the output the highest number that exists with the processor that has the lowest
+identifier (that is writing).  
 \newpage
 20. Show that if there is an an algorithm for a particular problem that runs in time T ($n$, $p$) on a $p$
 processor CRCW machine, then there is an algorithm for this problem that runs in time T ($n$, $p$) log p
