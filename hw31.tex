@@ -20,7 +20,7 @@
 
 19. Design a parallel algorithm that finds the maximum number in a sequence $x_1, \ldots, x_n$ of (not necessarily
 distinct) integers in the range 1 to $n$. Your algorithm should run in constant time on a CRCW
-Commmon PRAM with $n$ processors. Note that it is important here that the $x_i$'s have restricted
+Common PRAM with $n$ processors. Note that it is important here that the $x_i$'s have restricted
 range.
 \\
 \\
@@ -38,7 +38,11 @@ each processor initially has a pointer to a unique node in the tree.\\
 HINT: Following the technique used for subtraction in the class notes you need only find a collection
 of functions that contain the identity function and constant functions, and is closed under addition,
 subtraction, multiplication, division with constants, and composition.
-
+\\
+\\
+We initially give each edge containing leaves the function x+xi, so the constant is converted into complex form.
+Complex numbers are closed under addition, subtraction, multiplication, division, and composition. The rest of
+the algorithm follows exactly as described in the class notes. \\
 
 
 
