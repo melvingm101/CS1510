@@ -73,11 +73,34 @@ becomes:
 output should be the value of the expression represented by the tree. Your algorithm should run in
 O(log $n$) time on a CREW PRAM with $n$ processors, where $n$ is the number of nodes in the tree. You
 may assume that each processor initially has a pointer to a unique node in the tree.
-
-
-
-
-
+\\
+\\
+This solution is analogous to arithmetic expression tree evaluation, since AND operations are similar
+to multiplication, and OR operations are similar to addition, and NOT operations are similar to negation.\\
+We apply the standard $cut$ procedure as before.\\
+\begin{verbatim}
+    NOT
+      \ a(x)
+       \
+       OR
+  d(x) / \ c(x)
+      /   \
+    AND    1
+    / \
+\end{verbatim}
+becomes
+\begin{verbatim}
+   NOT
+     \ a(d(x) OR c(1))
+      \
+      AND
+      / \
+\end{verbatim}
+The expression on the edge can be immediately simplified.\\
+$d(x)~OR~1$ becomes $1$\\
+$d(x)~OR~0$ becomes $d(x)$\\
+$d(x)~AND~1$ becomes $d(x)$\\
+$d(x)~AND~0$ becomes $0$\\
 
 
 
