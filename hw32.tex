@@ -25,6 +25,49 @@ in the tree. The problem is determine the balance factor of each node in the tre
 of a node is the height of its left subtree minus the height of its right subtree.
 \\
 \\
+This solution relies on the algorithm for expression evaluation, given in the course notes.
+Initially, we give every edge a function, $f(x) = x$. Then we contract the tree by defining a $cut$
+operation and applying it to odd-numbered left leaves and odd-numbered right leaves. The leaves
+are numbered using pointer doubling as discussed in class.\\
+The $cut$ operation:\\
+\begin{verbatim}
+   A
+    \ x+a
+     \
+      B
+ x+d / \ x+c
+    /   \
+   D     C
+        / \
+\end{verbatim}
+becomes:
+\begin{verbatim}
+    A
+     \ x+a+d+1-c
+      \
+       C
+      / \
+\end{verbatim}
+and
+\begin{verbatim}
+    A
+     \ x+a
+      \
+       B
+  x+d / \ x+c
+     /   \
+    D     C
+   / \
+\end{verbatim}
+becomes:
+\begin{verbatim}
+    A
+     \ x+a+d-1-c
+      \
+       D
+      / \
+\end{verbatim}
+\newpage
 24. Design a parallel algorithm that takes a binary expression tree, where the leaves are Boolean values
 0 or 1, and the internal nodes are the three standard logical operations: NOT, OR, and AND. The
 output should be the value of the expression represented by the tree. Your algorithm should run in
